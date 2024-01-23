@@ -1,0 +1,23 @@
+project:
+  type: book
+  output-dir: docs
+  
+book:
+  title: "daR4hs"
+  author: "Г. А. Мороз"
+  repo-url: https://agricolamz.github.io/daR4hs/
+  chapters:
+    - index.qmd
+    - 01-distributions.qmd
+    - 02-likelihood.qmd
+
+callout-appearance: simple
+callout-icon: false
+bibliography: bibliography.bib
+
+format:
+  html:
+    theme: cosmo
+
+
+

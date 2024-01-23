@@ -1,0 +1,122 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "daR4hs",
+    "section": "",
+    "text": "О курсе\nМатериалы для курса Анализа данных для лингвистов, Школа лингвистики НИУ ВШЭ.",
+    "crumbs": [
+      "О курсе"
+    ]
+  },
+  {
+    "objectID": "index.html#используемые-пакеты",
+    "href": "index.html#используемые-пакеты",
+    "title": "daR4hs",
+    "section": "Используемые пакеты",
+    "text": "Используемые пакеты\n\npackageVersion(\"tidyverse\")\n\n[1] '2.0.0'\n\npackageVersion(\"fitdistrplus\")\n\n[1] '1.1.11'\n\npackageVersion(\"mixtools\")\n\n[1] '2.0.0'\n\npackageVersion(\"lme4\")\n\n[1] '1.1.35.1'\n\npackageVersion(\"lmerTest\")\n\n[1] '3.1.3'\n\npackageVersion(\"car\")\n\n[1] '3.1.2'\n\npackageVersion(\"pscl\")\n\n[1] '1.5.5.1'\n\npackageVersion(\"nnet\")\n\n[1] '7.3.19'\n\npackageVersion(\"MASS\")\n\n[1] '7.3.60'\n\npackageVersion(\"ggeffects\")\n\n[1] '1.3.4'\n\npackageVersion(\"brms\")\n\n[1] '2.20.4'\n\npackageVersion(\"tidybayes\")\n\n[1] '3.0.6'",
+    "crumbs": [
+      "О курсе"
+    ]
+  },
+  {
+    "objectID": "index.html#домашние-задания",
+    "href": "index.html#домашние-задания",
+    "title": "daR4hs",
+    "section": "Домашние задания",
+    "text": "Домашние задания\n\nдомашнее задание к лекции 30.01.2024:\n\nвспомните пожалуйста, условные вероятности, формулу Байеса и при каких условиях ее применяют;\nпосмотрите освежающие материалы про условную вероятность и формулу Байеса.",
+    "crumbs": [
+      "О курсе"
+    ]
+  },
+  {
+    "objectID": "01-distributions.html#распределения-в-r",
+    "href": "01-distributions.html#распределения-в-r",
+    "title": "1  Распределения",
+    "section": "1.1 Распределения в R",
+    "text": "1.1 Распределения в R\nВ R встроено какое-то количество известных распределений. Все они представлены четырьмя функциями:\n\nd... (функция плотности, probability density function),\np... (функция распределения, cumulative distribution function) — интеграл площади под кривой от начала до указанной квантили\nq... (обратная функции распределения, inverse cumulative distribution function) — значение p-той квантили распределения\nи r... (рандомные числа из заданного распределения).\n\nРассмотрим все это на примере нормального распределения.\n\ntibble(x = 1:100,\n       PDF = dnorm(x = x, mean = 50, sd = 10)) |&gt; \n  ggplot(aes(x, PDF))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"PDF нормального распределения (μ = 50, sd = 10)\")\n\n\n\n\n\n\n\ntibble(x = 1:100,\n       CDF = pnorm(x, mean = 50, sd = 10)) |&gt; \n  ggplot(aes(x, CDF))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"CDF нормального распределения (μ = 50, sd = 10)\")\n\n\n\n\n\n\n\ntibble(quantiles = seq(0, 1, by = 0.01),\n       value = qnorm(quantiles, mean = 50, sd = 10)) |&gt; \n  ggplot(aes(quantiles, value))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"inverse CDF нормального распределения (μ = 50, sd = 10)\")\n\n\n\n\n\n\n\ntibble(sample = rnorm(100, mean = 50, sd = 10)) |&gt; \n  ggplot(aes(sample))+\n  geom_histogram()+\n  labs(title = \"выборка нормально распределенных чисел (μ = 50, sd = 10)\")\n\n\n\n\n\n\n\n\nЕсли не использовать set.seed(), то результат работы рандомизатора нельзя будет повторить.\n\n\n\n\n\n\nКакое значение имеет 25% квантиль нормального распределения со средним в 20 и стандартным отклонением 90? Ответ округлите до трех знаков после запятой.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nДанные из базы данных фонетических инвентарей PHOIBLE (Moran, McCloy, and Wright 2014), достаточно сильно упрощая, можно описать нормальным распределением со средним 35 фонем и стандартным отклонением 13. Если мы ничего не знаем про язык, оцените с какой вероятностью, согласно этой модели произвольно взятый язык окажется в промежутке между 25 и 50 фонемами? Ответ округлите до трех знаков после запятой.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nКакие есть недостатки у модели из предыдущего задания?\n\n\n\n\n\n\nответы:\nнедостаток 1\n\n\nнедостаток 2",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Распределения</span>"
+    ]
+  },
+  {
+    "objectID": "01-distributions.html#дискретные-переменные",
+    "href": "01-distributions.html#дискретные-переменные",
+    "title": "1  Распределения",
+    "section": "1.2 Дискретные переменные",
+    "text": "1.2 Дискретные переменные\n\n1.2.1 Биномиальное распределение\nБиномиальное распределение — распределение количетсва успехов эксперементов Бернулли из n попыток с вероятностью успеха p.\n\\[P(k | n, p) = \\frac{n!}{k!(n-k)!} \\times p^k \\times (1-p)^{n-k} =  {n \\choose k} \\times p^k \\times (1-p)^{n-k}\\] \\[ 0 \\leq p \\leq 1; n, k &gt; 0\\]\n\ntibble(x = 0:50,\n       density = dbinom(x = x, size = 50, prob = 0.16)) |&gt; \n  ggplot(aes(x, density))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"Биномиальное распределение p = 0.16, n = 50\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nНемного упрощая данные из статьи (Rosenbach 2003: 394), можно сказать что носители британского английского предпочитают s-генитив (90%) of-генитиву (10%). Какова вероятность, согласно этим данным, что в интервью британского актера из 118 контекстов будет 102 s-генитивов? Ответ округлите до трёх ИЛИ МЕНЕЕ знаков после запятой.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nА какое значение количества s-генитивов наиболее ожидаемо, согласно этой модели?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1.2.2 Геометрическое распределение\nГеометрическое распределение — распределение количетсва эксперементов Бернулли с вероятностью успеха p до первого успеха.\n\\[P(k | p) = (1-p)^k\\times p\\] \\[k\\in\\{1, 2, \\dots\\}\\]\n\ntibble(x = 0:50,\n       density = dgeom(x = x, prob = 0.16)) |&gt; \n  ggplot(aes(x, density))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"Геометрическое распределение p = 0.16, n = 50\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nПриняв модель из (Rosenbach 2003: 394), какова вероятность, что в интервью с британским актером первый of-генитив будет третьим по счету?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1.2.3 Распределение Пуассона\nРаспределение дискретной переменной, обозначающей количество случаев \\(k\\) некоторого события, которое происходит с некоторой заданной частотой \\(\\lambda\\).\n\\[P(\\lambda) = \\frac{e^{-\\lambda}\\times\\lambda^k}{k!}\\]\n\ntibble(k = 0:50,\n       density = dpois(x = k, lambda = 5)) |&gt; \n  ggplot(aes(k, density))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"Распределение Пуассона с параметром λ = 5\")\n\n\n\n\n\n\n\n\nПараметр \\(\\lambda\\) в модели Пуассона одновременно является и средним, и дисперсией.\nПопробуем воспользоваться распределением Пуассона для моделирования количества слогов в андийском языке. Количество слогов – это всегда натуральное число (т. е. не бывает 2.5 слогов, не бывает -3 слогов и т. д., но в теории может быть 0 слогов), так что модель Пуассона здесь применима. Согласно модели Пуассона все слова независимо друг от друга получают сколько-то слогов согласно распределению Пуассона. Посмотрим на данные:\n\nandic_syllables &lt;- read_csv(\"https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/andic_syllables.csv\") \n\nandic_syllables |&gt; \n  ggplot(aes(n_syllables, count))+\n  geom_col()+\n  facet_wrap(~language, scales = \"free\")\n\n\n\n\n\n\n\n\nПтичка напела (мы научимся узнавать, откуда птичка это знает на следующем занятии), что андийские данные можно описать при помощи распределения Пуассона с параметром \\(\\lambda\\) = 2.783.\n\nandic_syllables |&gt; \n  filter(language == \"Andi\") |&gt; \n  rename(observed = count) |&gt; \n  mutate(predicted = dpois(n_syllables, lambda = 2.783)*sum(observed)) |&gt; \n  pivot_longer(names_to = \"type\", values_to = \"value\", cols = c(observed, predicted)) |&gt; \n  ggplot(aes(n_syllables, value, fill = type))+\n  geom_col(position = \"dodge\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nНа графиках ниже представлены предсказания трех Пуассоновских моделей, какая кажется лучше?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nВыше было написано:\n\nСогласно модели Пуассона все слова независимо друг от друга получают сколько-то слогов согласно распределению Пуассона.\n\nКакие проблемы есть у предположения о независимости друг от друга количества слогов разных слов в словаре?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Распределения</span>"
+    ]
+  },
+  {
+    "objectID": "01-distributions.html#числовые-переменные",
+    "href": "01-distributions.html#числовые-переменные",
+    "title": "1  Распределения",
+    "section": "1.3 Числовые переменные",
+    "text": "1.3 Числовые переменные\n\n1.3.1 Нормальное распределение\n\\[P(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\times e^{-\\frac{\\left(x-\\mu\\right)^2}{2\\sigma^2}}\\]\n\\[\\mu \\in \\mathbb{R}; \\sigma^2 &gt; 0\\]\n\ntibble(x = 1:100,\n       PDF = dnorm(x = x, mean = 50, sd = 10)) |&gt; \n  ggplot(aes(x, PDF))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"PDF нормального распределения (μ = 50, sd = 10)\")\n\n\n\n\n\n\n\n\nПтичка напела, что длительность гласных американского английского из (Hillenbrand et al. 1995) можно описать нормальным распределением с параметрами \\(\\mu =\\) 274.673 и \\(\\sigma =\\) 64.482. Посмотрим, как можно совместить данные и это распределение:\n\nvowels &lt;- read_csv(\"https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/phonTools_hillenbrand_1995.csv\") \nvowels |&gt; \n  ggplot(aes(dur)) + \n  geom_histogram(aes(y = after_stat(density))) + # обратите внимание на аргумент after_stat(density)\n  stat_function(fun = dnorm, args = list(mean = 274.673, sd = 64.482), color = \"red\")\n\n\n\n\n\n\n\n\n\n\n1.3.2 Логнормальное распределение\n\\[P(x) = \\frac{1}{\\sqrt{x\\sigma2\\pi}}\\times e^{-\\frac{\\left(\\ln(x)-\\mu\\right)^2}{2\\sigma^2}}\\]\n\\[\\mu \\in \\mathbb{R}; \\sigma^2 &gt; 0\\]\n\ntibble(x = 1:100,\n       PDF = dlnorm(x = x, mean = 3, sd = 0.5)) |&gt; \n  ggplot(aes(x, PDF))+\n  geom_point()+\n  geom_line()+\n  labs(title = \"PDF логнормального распределения (μ = 3, σ = 0.5)\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nКакая из логнормальных моделей для длительности гласных американского английского из (Hillenbrand et al. 1995) лучше подходит к данным? Попробуйте самостоятельно построить данный график.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1.3.3 Что еще почитать про распределения?\nЛюди придумали очень много разных распределений. Стоит, наверное, также понимать, что распределения не существуют отдельно в вакууме: многие из них математически связаны друг с другом. Про это можно посмотреть вот здесь или здесь.\n\n\n\n\nHillenbrand, James, Laura A Getty, Michael J Clark, and Kimberlee Wheeler. 1995. “Acoustic Characteristics of American English Vowels.” The Journal of the Acoustical Society of America 97 (5): 3099–3111.\n\n\nMoran, Steven, Daniel McCloy, and Richard Wright, eds. 2014. PHOIBLE Online. Leipzig: Max Planck Institute for Evolutionary Anthropology. https://phoible.org/.\n\n\nRosenbach, Anette. 2003. “Aspects of Iconicity and Economy in the Choice Between the s-Genitive and the of-Genitive in English.” In Determinants of Grammatical Variation in English, edited by Günter Rohdenburg and Britta Mondorf. Berlin, New York: Mouton de Gruyter.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Распределения</span>"
+    ]
+  },
+  {
+    "objectID": "02-likelihood.html#оценка-вероятности",
+    "href": "02-likelihood.html#оценка-вероятности",
+    "title": "2  Метод максимального правдоподобия",
+    "section": "2.1 Оценка вероятности",
+    "text": "2.1 Оценка вероятности\n\nlibrary(tidyverse)\n\nКогда у нас задано некоторое распределение, мы можем задавать к нему разные вопросы. Например, если мы верим что длительность гласных американского английского из (Hillenbrand et al. 1995) можно описать логнормальным распределением с параметрами \\(\\ln{\\mu} =\\) 5.587 и \\(\\ln{\\sigma} =\\) 0.242, то мы можем делать некотрые предсказания относительно интересующей нас переменной.\n\nggplot() + \n  stat_function(fun = dlnorm, args = list(mean = 5.587, sd = 0.242))+\n  scale_x_continuous(breaks = 0:6*100, limits = c(0, 650))+\n  labs(x = \"длительность гласного (мс)\",\n       y = \"значение функции плотности\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nЕсли принять на веру, что логнормальное распределение с параметрами \\(\\ln{\\mu} =\\) 5.587 и \\(\\ln{\\sigma}=\\) 0.242 описывает данные длительности гласных американского английского из (Hillenbrand et al. 1995), то какова вероятность наблюдать значения между 300 и 400 мс? То же самое можно записать, используя математическую нотацию:\n\\[P\\left(X \\in [300,\\, 400] | X \\sim \\ln{\\mathcal{N}}(\\ln{\\mu} = 5.587, \\ln{\\sigma}=0.242)\\right) = ??\\] Ответ округлите до трех и меньше знаков после запятой.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nЕсли принять на веру, что биномиальное распределение с параметрами \\(p =\\) 0.9 описывает, согласно (Rosenbach 2003: 394) употребление s-генитивов в британском английском, то какова вероятность наблюдать значения между 300 и 350 генитивов в интервью, содержащее 400 генитивных контекстов? То же самое можно записать, используя математическую нотацию:\n\\[P\\left(X \\in [300,\\, 350] | X \\sim Binom(n = 400, p = 0.9)\\right) = ??\\] Ответ округлите до трех и меньше знаков после запятой.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Метод максимального правдоподобия</span>"
+    ]
+  },
+  {
+    "objectID": "02-likelihood.html#функция-правдоподобия",
+    "href": "02-likelihood.html#функция-правдоподобия",
+    "title": "2  Метод максимального правдоподобия",
+    "section": "2.2 Функция правдоподобия",
+    "text": "2.2 Функция правдоподобия\nЕсли при поиске вероятностей, мы предполагали, что данные нам неизвестны, а распределение и его параметры известны, то функция правдоподобия позволяет этот процесс перевернуть, запустив поиск параметров распределения, при изветсных данных и семье распределения:\n\\[L\\left(X \\sim Distr(...)|x\\right) = ...\\]\nТаким образом получается, что на основании функции плотности мы можем сравнивать, какой параметр лучше подходит к нашим данным.\nДля примера рассмотрим наш s-генетив: мы провели интервью и нам встретилось 85 s-генетивов из 100 случаев всех генетивов. Насколько хорошо подходит нам распределение с параметром p = 0.9?\n\n\n\n\n\n\n\n\n\nОтвет:\n\ndbinom(85, 100, 0.9)\n\n[1] 0.03268244\n\n\nПредставим теперь это как функцию от параметра p:\n\ntibble(p = seq(0, 1, by = 0.01)) |&gt; \n  ggplot(aes(p)) +\n  stat_function(fun = function(p) dbinom(85, 100, p), geom = \"col\")+\n  labs(x = \"параметр биномиального распределения p\",\n       y = \"значение функции правдоподобия\\n(одно наблюдение)\")\n\n\n\n\n\n\n\n\nА что если мы располагаем двумя интервью одного актера? В первом на сто генитивов пришлось 85 s-генитивов, а во втором – 89. В таком случае, также как и с вероятностью наступления двух независимых событий, значения функции плотности перемножаются.\n\ndbinom(85, 100, 0.9)*dbinom(89, 100, 0.9)\n\n[1] 0.003917892\n\n\n\ntibble(p = seq(0, 1, by = 0.01)) |&gt; \n  ggplot(aes(p)) +\n  stat_function(fun = function(p) dbinom(85, 100, p)*dbinom(89, 100, p), geom = \"col\")+\n  labs(x = \"параметр биномиального распределения p\",\n       y = \"значение функции правдоподобия\\n(два наблюдения)\")\n\n\n\n\n\n\n\n\nВ итоге:\n\nвероятность — P(data|distribution)\nправдоподобие — L(distribution|data)\n\nИнтеграл распределения/сумма значений вероятностей равен/на 1. Интеграл распределения/сумма значений правдоподобия может быть не равен/на 1.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Метод максимального правдоподобия</span>"
+    ]
+  },
+  {
+    "objectID": "02-likelihood.html#пример-с-непрерывным-распределением",
+    "href": "02-likelihood.html#пример-с-непрерывным-распределением",
+    "title": "2  Метод максимального правдоподобия",
+    "section": "2.3 Пример с непрерывным распределением",
+    "text": "2.3 Пример с непрерывным распределением\nМы уже обсуждали, что длительность гласных американского английского из (Hillenbrand et al. 1995) можно описать логнормальным распределением с параметрами \\(\\ln\\mu\\) и \\(\\ln\\sigma\\). Предположим, что \\(\\ln\\sigma = 0.342\\), построим функцию правдоподобия для \\(\\ln\\mu\\):\n\nvowels &lt;- read_csv(\"https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/phonTools_hillenbrand_1995.csv\") \n\ntibble(ln_mu = seq(5, 6, by = 0.001)) |&gt; \n  ggplot(aes(ln_mu)) + \n  stat_function(fun = function(ln_mu) dlnorm(vowels$dur[1], meanlog = ln_mu, sdlog = 0.242))+\n  labs(x = \"параметр логнормального распределения ln μ\",\n       y = \"значение функции правдоподобия\\n(одно наблюдение)\")\n\n\n\n\n\n\n\ntibble(ln_mu = seq(5, 6, by = 0.001)) |&gt; \n  ggplot(aes(ln_mu)) + \n  stat_function(fun = function(ln_mu) dlnorm(vowels$dur[1], meanlog = ln_mu, sdlog = 0.242)*dlnorm(vowels$dur[2], meanlog = ln_mu, sdlog = 0.242))+\n  labs(x = \"параметр логнормального распределения ln μ\",\n       y = \"значение функции правдоподобия\\n(два наблюдения)\")\n\n\n\n\n\n\n\ntibble(ln_mu = seq(5, 6, by = 0.001)) |&gt; \n  ggplot(aes(ln_mu)) + \n  stat_function(fun = function(ln_mu) dlnorm(vowels$dur[1], meanlog = ln_mu, sdlog = 0.242)*dlnorm(vowels$dur[2], meanlog = ln_mu, sdlog = 0.242)*dlnorm(vowels$dur[3], meanlog = ln_mu, sdlog = 0.242))+\n  labs(x = \"параметр логнормального распределения ln μ\",\n       y = \"значение функции правдоподобия\\n(три наблюдения)\")\n\n\n\n\n\n\n\n\nДля простоты в начале я зафиксировал один из параметров логнормального распредления: лог стандартное отклонение. Конечно, это совсем необязательно делать: можно создать матрицу значений лог среднего и лог стандартного отклонения и получить для каждой ячейки матрицы значения функции правдоподобия.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Метод максимального правдоподобия</span>"
+    ]
+  },
+  {
+    "objectID": "02-likelihood.html#метод-максимального-правдоподобия-mle",
+    "href": "02-likelihood.html#метод-максимального-правдоподобия-mle",
+    "title": "2  Метод максимального правдоподобия",
+    "section": "2.4 Метод максимального правдоподобия (MLE)",
+    "text": "2.4 Метод максимального правдоподобия (MLE)\nФункция правдоподобия позволяет подбирать параметры распределения. Оценка параметров распределения при помощи функции максимального правдоподобия получила название метод максимального правдоподобия. Его я и использовал ранее для того, чтобы получить значения распределений для заданий из первого занятия:\n\nданные длительности американских гласных из (Hillenbrand et al. 1995) и логнормальное распределение\n\n\nfitdistrplus::fitdist(vowels$dur, distr = 'lnorm', method = 'mle')\n\nFitting of the distribution ' lnorm ' by maximum likelihood \nParameters:\n         estimate  Std. Error\nmeanlog 5.5870359 0.005935135\nsdlog   0.2423978 0.004196453\n\n\n\nколичество андийских слогов в словах и распределение Пуассона\n\n\nandic_syllables &lt;- read_csv(\"https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/andic_syllables.csv\") \n\nandic_syllables |&gt; \n  filter(language == \"Andi\") |&gt; \n  uncount(count) |&gt; \n  pull(n_syllables) |&gt; \n  fitdistrplus::fitdist(distr = 'pois', method = 'mle')\n\nFitting of the distribution ' pois ' by maximum likelihood \nParameters:\n       estimate Std. Error\nlambda 2.782715 0.02128182\n\n\n\nЕсть и другие методы оценки параметров.\nМетод максимального правдоподобия может быть чувствителен к размеру выборки.\n\n\n\n\n\n\n\nОтфильтруйте из данных с количеством слогов в андийских языках багвалинский и, используя метод максимального правдоподобия, оцените для них параметры модели Пуассона.\n\n\n\n\n\n\n\n\n\nВ работе (Coretta 2016) собраны данные длительности исландских гласных. Отфильтруйте данные, оставив односложные слова (переменная syllables) после придыхательного (переменная aspiration), произнесенные носителем tt01 (переменная speaker) и постройте следующий график, моделируя длительность гласных (переменная vowel.dur) нормальным и логнормальным распределением. Как вам кажется, какое распределение лучше подходит к данным? Докажите ваше утверждение, сравнив значения правдоподобия.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Метод максимального правдоподобия</span>"
+    ]
+  },
+  {
+    "objectID": "02-likelihood.html#логорифм-функции-правдоподобия",
+    "href": "02-likelihood.html#логорифм-функции-правдоподобия",
+    "title": "2  Метод максимального правдоподобия",
+    "section": "2.5 Логорифм функции правдоподобия",
+    "text": "2.5 Логорифм функции правдоподобия\nТак как в большинстве случаев нужно найти лишь максимум функции правдоподобия, а не саму функцию \\(\\ell(x|\\theta)\\), то для облегчения подсчетов используют логорифмическую функцию правдоподобия \\(\\ln\\ell(x|\\theta)\\): в результате, вместо произведения появляется сумма1:\n\\[\\text{argmax}_\\theta \\prod \\ell(\\theta|x) = \\text{argmax}_\\theta \\sum \\ln\\ell(\\theta|x) \\]\nВо всех предыдущих примерах мы смотрели на 1-3 примера данных, давайте попробуем использовать функцию правдоподобия для большего набора данных.\n\n\n\n\n\n\nПредставим, что мы проводим некоторый эксперимент, и у некоторых участников все получается с первой попытки, а некоторым нужна еще одна попытка или даже две. Дополните код функциями правдоподобия и логорифмической функцией правдоподобия, чтобы получился график ниже.\n\n\n\n\nset.seed(42)\nv &lt;- sample(0:2, 10, replace = TRUE)\n\nsapply(seq(0.01, 0.99, 0.01), function(p){\n  ...\n}) -&gt;\n  likelihood\n\nsapply(seq(0.01, 0.99, 0.01), function(p){\n  ...\n}) -&gt;\n  loglikelihood\n\ntibble(p = seq(0.01, 0.99, 0.01),\n       loglikelihood,\n       likelihood) |&gt; \n  pivot_longer(names_to = \"type\", values_to = \"value\", loglikelihood:likelihood) |&gt; \n  ggplot(aes(p, value))+\n  geom_line()+\n  geom_vline(xintercept = 0.33, linetype = 2)+\n  facet_wrap(~type, scales = \"free_y\", nrow = 2)+\n  scale_x_continuous(breaks = c(0:5*0.25, 0.33))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCoretta, Stefano. 2016. “Vowel Duration and Aspiration Effects in Icelandic.” University of York.\n\n\nHillenbrand, James, Laura A Getty, Michael J Clark, and Kimberlee Wheeler. 1995. “Acoustic Characteristics of American English Vowels.” The Journal of the Acoustical Society of America 97 (5): 3099–3111.\n\n\nRosenbach, Anette. 2003. “Aspects of Iconicity and Economy in the Choice Between the s-Genitive and the of-Genitive in English.” In Determinants of Grammatical Variation in English, edited by Günter Rohdenburg and Britta Mondorf. Berlin, New York: Mouton de Gruyter.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Метод максимального правдоподобия</span>"
+    ]
+  },
+  {
+    "objectID": "02-likelihood.html#footnotes",
+    "href": "02-likelihood.html#footnotes",
+    "title": "2  Метод максимального правдоподобия",
+    "section": "",
+    "text": "Это просто свойство логарифмов: log(5*5) = log(5)+log(5)↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Метод максимального правдоподобия</span>"
+    ]
+  }
+]
