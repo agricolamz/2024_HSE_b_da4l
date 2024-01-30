@@ -349,7 +349,7 @@ vowels |>
   stat_function(fun = dlnorm, args = list(mean = 5.587, sd = 0.242), color = "red")+
   stat_function(fun = dlnorm, args = list(mean = 5.687, sd = 0.342), color = "darkgreen")+
   stat_function(fun = dlnorm, args = list(mean = 5.487, sd = 0.262), color = "navy")+
-  labs(subtitle = "синяя: ln μ = 5.487, ln σ = 0.262\nкрасная: ln μ = 5.687, ln σ = 0.342\nзеленая: ln μ = 5.587, ln σ = 0.242\n",
+  labs(subtitle = "синяя: ln μ = 5.487, ln σ = 0.262\nкрасная: ln μ = 5.587, ln σ = 0.242\nзеленая: ln μ = 5.687, ln σ = 0.342\n",
        x = "длительность гласного (мс)",
        y = "значение функции плотности")
 ```
