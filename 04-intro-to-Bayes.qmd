@@ -2,15 +2,15 @@
 editor_options: 
   chunk_output_type: console
 ---
-w
-```{r setup04, include=FALSE}
+```{r setup04}
+#| include: false
+
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, comment = "")
 options(scipen=999)
 library(tidyverse)
 theme_set(theme_bw())
 library(latex2exp)
 ```
-
 
 # Байесовский статистический вывод
 
@@ -36,13 +36,16 @@ $$P(θ|Data) \propto P(Data|θ)\times P(θ)$$
 Для примера я взял датасет, который содержит спамерские и обычные смс-сообщения, выложенный UCI Machine Learning [на kaggle](https://www.kaggle.com/uciml/sms-spam-collection-dataset) и при помощи пакета `udpipe` токенизировал и определил часть речи:
 
 ```{r, fig.width=9, fig.height=7}
-sms_pos <- read_csv("https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/spam_sms_pos.csv")
+#| fig-width: 9
+#| fig-height: 7
+
+sms_pos <- read_csv("https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/spam_sms_pos.csv")
 glimpse(sms_pos)
 
-sms_pos %>% 
-  group_by(type) %>% 
+sms_pos |> 
+  group_by(type) |> 
   mutate(ratio = n/sum(n),
-         upos = fct_reorder(upos, n, mean, .desc = TRUE)) %>%
+         upos = fct_reorder(upos, n, mean, .desc = TRUE)) |>
   ggplot(aes(type, ratio))+
   geom_col()+
   geom_label(aes(label = round(ratio, 3)), position = position_stack(vjust = 0.5))+
@@ -87,21 +90,23 @@ tibble(model = c("ham", "spam"),
        posterior_3 = product_3/sum(product_3))
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 На основе первых трех слов посчитайте посчитайте вероятность гипотезы, что перед нами спамерское сообщение, если предположить, что каждое пятое сообщение -- спам. Ответ округлите до трех знаков после запятой.
-```
+:::
 
-```{r, echo = FALSE, results='asis'}
+```{r}
+#| echo: false
+
 library(checkdown)
 tibble(model = c("ham", "spam"),
        prior = c(0.8, 0.2),
        likelihood = c(0.135, 0.096),
        likelihood_2 = c(0.016, 0.117),
        product = prior*likelihood*likelihood_2*likelihood_2,
-       posterior = product/sum(product)) %>% 
-  slice(2) %>% 
-  pull(posterior) %>% 
-  round(3) %>% 
+       posterior = product/sum(product)) |> 
+  slice(2) |> 
+  pull(posterior) |> 
+  round(3) |> 
   check_question()
 ```
 
@@ -132,16 +137,18 @@ tibble(model = c("ham", "spam"),
 Самым главным отличием байесовского статистического вывода от фриквентистского, является то, что мы в результате получаем вероятность каждой из моделей. Это очень значительно отличается от фриквентистской практики нулевых гипотез и p-value, в соответствии с которыми мы можем лишь отвергнуть или не отвергнуть нулевую гипотезу.
 
 
-```{block, type = "rmdtask"}
-Вашего друга похитили а на почту отправили [датасет](https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/weather.csv), в котором записаны данные о погоде из пяти городов. Ваш телефон зазвонил, и друг сказал, что не знает куда его похитили, но за окном легкий дождь (`Rain`). А в какой-то из следующих дней --- сильный дождь (`Rain, Thunderstorm`). Исходя из явно неверного предположения, что погодные условия каждый день не зависят друг от друга, сделайте байесовский апдейт и предположите, в какой город вероятнее всего похитили друга.
-```
+::: {.callout-note}
+Вашего друга похитили а на почту отправили [датасет](https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/weather.csv), в котором записаны данные о погоде из пяти городов. Ваш телефон зазвонил, и друг сказал, что не знает куда его похитили, но за окном легкий дождь (`Rain`). А в какой-то из следующих дней --- сильный дождь (`Rain, Thunderstorm`). Исходя из явно неверного предположения, что погодные условия каждый день не зависят друг от друга, сделайте байесовский апдейт и предположите, в какой город вероятнее всего похитили друга.
+:::
 
-```{r, include=FALSE}
-df <- read.csv("https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/weather.csv")
-df %>%
-  count(city, events) %>% 
-  group_by(city) %>% 
-  mutate(prop = n/sum(n)) %>% 
+```{r}
+#| include: false
+
+df <- read.csv("https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/weather.csv")
+df |>
+  count(city, events) |> 
+  group_by(city) |> 
+  mutate(prop = n/sum(n)) |> 
   ggplot(aes(city, prop, fill = events, label = round(prop, 3)))+
   geom_col()+
   geom_text(position = position_stack(vjust = 0.5), color = "white")
@@ -156,15 +163,19 @@ tibble(model = c("Auckland", "Beijing", "Chicago", "Mumbai", "San Diego"),
            posterior_2 = product_2/sum(product_2))
 ```
 
-```{r, results='asis', echo=FALSE}
+```{r}
+#| echo: false
+
 check_question(answer = "San Diego", options = c("Auckland", "Beijing", "Chicago", "Mumbai", "San Diego"))
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Укажите получившуюся вероятность. Выполняя задание, округлите все вероятности и значения правдоподобия до 3 знаков после запятой.
-```
+:::
 
-```{r, results='asis', echo=FALSE}
+```{r}
+#| echo: false
+
 check_question(answer = 0.549)
 ```
 
@@ -187,7 +198,7 @@ $$ 0 \leq p \leq 1; n, k > 0$$
 
 ```{r}
 tibble(x = 0:50,
-           density = dbinom(x = x, size = 50, prob = 0.16)) %>% 
+           density = dbinom(x = x, size = 50, prob = 0.16)) |> 
   ggplot(aes(x, density))+
   geom_point()+
   geom_line()+
@@ -205,7 +216,7 @@ $$Β(α, β) = \frac{Γ(α)\times Γ(β)}{Γ(α+β)} = \frac{(α-1)!(β-1)!}{(α
 
 ```{r}
 tibble(x = seq(0, 1, length.out = 100),
-           density = dbeta(x = x, shape1 = 8, shape2 = 42)) %>% 
+           density = dbeta(x = x, shape1 = 8, shape2 = 42)) |> 
   ggplot(aes(x, density))+
   geom_point()+
   geom_line()+
@@ -214,7 +225,9 @@ tibble(x = seq(0, 1, length.out = 100),
 
 Можно поиграть с разными параметрами:
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
 shiny::runGitHub("agricolamz/beta_distribution_shiny") 
 ```
 
@@ -228,29 +241,34 @@ $$\sigma^2 = \frac{\alpha\times\beta}{(\alpha+\beta)^2\times(\alpha+\beta+1)}$$
 $$Beta_{post}(\alpha_{post}, \beta_{post}) = Beta(\alpha_{prior}+\alpha_{data}, \beta_{prior}+\beta_{data}),$$
 где $Beta$ --- это бета распределение
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
 shiny::runGitHub("agricolamz/bayes_for_binomial_app") 
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Немного упрощая данные из статьи [@rosenbach03: 394], можно сказать что носители британского английского предпочитают *s*-генитив (90%) *of*-генитиву (10%). Проведите байесовский апдейт, если Вы наблюдаете в интервью британского актера из 120 контекстов 92 *s*-генитивов. Априорное распределение берите соразмерное данным. Ответ округлите до трёх или менее знаков после запятой.
-```
+:::
 
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Параметр альфа:
-```
+:::
 
-```{r, echo=FALSE, results='asis'}
-library(checkdown)
+```{r}
+#| echo: false
+
 check_question(108+92)
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Параметр бета:
-```
+:::
 
-```{r, echo=FALSE, results='asis'}
+```{r}
+#| echo: false
+
 check_question(12+28)
 ```
 
@@ -267,7 +285,7 @@ tibble(x = rep(seq(0, 1, length.out = 100), 6),
                        dbeta(unique(x), shape1 = 24+4, shape2 = 26+16)),
            type = rep(c("prior", "prior", "prior", "posterior", "posterior", "posterior"), each = 100),
            dataset = rep(c("prior: 8, 42", "prior: 16, 34", "prior: 24, 26",
-                           "prior: 8, 42", "prior: 16, 34", "prior: 24, 26"), each = 100)) %>% 
+                           "prior: 8, 42", "prior: 16, 34", "prior: 24, 26"), each = 100)) |> 
   ggplot(aes(x, density, color = type))+
   geom_line()+
   facet_wrap(~dataset)+
@@ -283,11 +301,11 @@ tibble(x = rep(seq(0, 1, length.out = 100), 6),
 Встроенный датасет `ChickWeight` содержит вес цыплят (`weight`) в зависимости от типа диеты (`Diet`). Мы будем анализировать 20-дневных птенцов.
 
 ```{r}
-ChickWeight %>% 
+ChickWeight |> 
   filter(Time == 20) ->
   chicks
 
-chicks %>% 
+chicks |> 
   ggplot(aes(weight))+
   geom_density()
 ```
@@ -307,7 +325,7 @@ tibble(x = rep(1:400, 6),
                        dnorm(unique(x), mean = 200, sd = 70),
                        dnorm(unique(x), mean = 225, sd = 70),
                        dnorm(unique(x), mean = 250, sd = 70)),
-           dataset = rep(1:6, each = 400)) %>% 
+           dataset = rep(1:6, each = 400)) |> 
   ggplot(aes(x, density, color = factor(dataset)))+
   geom_line()
 ```
@@ -327,9 +345,9 @@ tibble(mu = seq(125, 250, by = 25),
            posterior = product/sum(product)) ->
   results
 results
-results %>% 
-  select(mu, prior, posterior) %>% 
-  pivot_longer(names_to = "type", values_to = "probability", prior:posterior) %>% 
+results |> 
+  select(mu, prior, posterior) |> 
+  pivot_longer(names_to = "type", values_to = "probability", prior:posterior) |> 
   ggplot(aes(mu, probability, color = type))+
   geom_point()+
   labs(title = "изменение вероятностей для каждой из моделей",
@@ -357,23 +375,27 @@ mean_prior <- 180
 mean_data <- mean(chicks$weight)
 mean_post <- weighted.mean(c(mean_prior, mean_data), c(1/sd_prior^2, 1/sd_data^2))
 
-chicks %>% 
+chicks |> 
   ggplot(aes(weight)) +
   geom_histogram(aes(y = after_stat(density)))+
   stat_function(fun = dnorm, args = list(mean_prior,  sd_prior), color = "lightblue")+
   stat_function(fun = dnorm, args = list(mean_post,  sd_post), color = "red")
 ```
 
-```{r, eval = FALSE}
+```{r}
+#| eval: false
+
 shiny::runGitHub("agricolamz/bayes_for_normal_app") 
 ```
 
-```{block, type = "rmdtask"}
-В работе [@coretta2016] собраны [данные](https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/Coretta_2017_icelandic.csv) длительности исландских гласных. Отфильтруйте данные, произнесенные носителем `tt01` (переменная `speaker`), произведите байесовский апдейт данных, моделируя  длительность гласных (переменная `vowel.dur`) нормальным распределением и постройте график. В качестве априорного распределения используйте нормальное распределение со средним 87 и стандартным отклонением 25. 
-```
+::: {.callout-note}
+В работе [@coretta2016] собраны [данные](https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/Coretta_2017_icelandic.csv) длительности исландских гласных. Отфильтруйте данные, произнесенные носителем `tt01` (переменная `speaker`), произведите байесовский апдейт данных, моделируя  длительность гласных (переменная `vowel.dur`) нормальным распределением и постройте график. В качестве априорного распределения используйте нормальное распределение со средним 87 и стандартным отклонением 25. 
+:::
 
-```{r, echo=FALSE}
-read_csv("https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/Coretta_2017_icelandic.csv") %>% 
+```{r}
+#| echo: false
+
+read_csv("https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/Coretta_2017_icelandic.csv") |> 
   filter(speaker == "tt01") ->
   vowels
 
@@ -384,7 +406,7 @@ mean_prior <- 87
 mean_data <- mean(vowels$vowel.dur)
 mean_post <- weighted.mean(c(mean_prior, mean_data), c(1/sd_prior^2, 1/sd_data^2))
 
-vowels %>% 
+vowels |> 
   ggplot(aes(vowel.dur)) +
   geom_histogram(aes(y = after_stat(density)))+
   stat_function(fun = dnorm, args = list(mean_prior,  sd_prior), color = "lightblue")+

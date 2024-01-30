@@ -65,6 +65,7 @@ tibble(sample = rnorm(100, mean = 50, sd = 10)) |>
 
 ```{r}
 #| echo: false
+
 qnorm(0.25, mean = 20, sd = 90) |> 
   round(3) |> 
   check_question(placeholder = "-12.345")
@@ -76,6 +77,7 @@ qnorm(0.25, mean = 20, sd = 90) |>
 
 ```{r}
 #| echo: false
+
 round(pnorm(50, 35, 13) - pnorm(25, 35, 13), 3) |>
   check_question(placeholder = "0.123")
 ```
@@ -86,6 +88,7 @@ round(pnorm(50, 35, 13) - pnorm(25, 35, 13), 3) |>
 
 ```{r}
 #| echo: false
+
 check_hints(list_title = "ответы:",
             hint_text = c("Согласно данной модели, количество фонем в языках может принимать значение равное любому действительному числу, в то время как в данных мы наблюдаем только целые числа.",
                           paste0("Данная модель предсказывает, что количество фонем ",
@@ -118,6 +121,7 @@ tibble(x = 0:50,
 
 ```{r}
 #| echo: false
+
 round(dbinom(x = 102, size = 118, prob = 0.9), 3) |> 
   check_question(placeholder = "0.123")
 ```
@@ -128,8 +132,9 @@ round(dbinom(x = 102, size = 118, prob = 0.9), 3) |>
 
 ```{r}
 #| echo: false
+
 round(dbinom(x = 1:118, size = 118, prob = 0.9), 3) |> 
-  which.max()
+  which.max() |> 
   check_question()
 ```
 
@@ -284,8 +289,10 @@ tibble(x = 1:100,
   labs(title = "PDF нормального распределения (μ = 50, sd = 10)")
 ```
 
-```{r, include=FALSE}
-vowels <- read_csv("https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/phonTools_hillenbrand_1995.csv") 
+```{r}
+#| include: false
+
+vowels <- read_csv("https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/phonTools_hillenbrand_1995.csv") 
 
 vowels |> 
   summarise(est = fitdistrplus::fitdist(dur, distr = 'norm', method = 'mle')$estimate) |> 
@@ -297,7 +304,7 @@ vowels |>
 Птичка напела, что длительность гласных американского английского из [@hillenbrand95] можно описать нормальным распределением с параметрами $\mu =$ `r est_m_sd[1]` и $\sigma =$ `r est_m_sd[2]`. Посмотрим, как можно совместить данные и это распределение:
 
 ```{r}
-vowels <- read_csv("https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/phonTools_hillenbrand_1995.csv") 
+vowels <- read_csv("https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/main/data/phonTools_hillenbrand_1995.csv") 
 vowels |> 
   ggplot(aes(dur)) + 
   geom_histogram(aes(y = after_stat(density))) + # обратите внимание на аргумент after_stat(density)
@@ -321,6 +328,7 @@ tibble(x = 1:100,
 
 ```{r}
 #| include: false
+
 vowels |> 
   summarise(est = fitdistrplus::fitdist(dur, distr = 'lnorm', method = 'mle')$estimate) |> 
   pull() |> 
