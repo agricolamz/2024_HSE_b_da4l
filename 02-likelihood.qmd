@@ -292,5 +292,5 @@ tibble(p = seq(0.01, 0.99, 0.01),
 
 ## Послесловие
 
-- Не стоит путать [MLE c градиентным спуском](https://stats.stackexchange.com/questions/183871/what-is-the-difference-between-maximum-likelihood-estimation-gradient-descent/183872#183872)
-- MLE --- не единственный способ, смотрите, например, Maximum Spacing Estimation [@cheng83; @ranneby84; @anatolyev05], см. `msedist()` из пакета `fitdistrplus`.
+- Не стоит путать [метод максимального правдоподобия (MLE) c градиентным спуском](https://stats.stackexchange.com/questions/183871/what-is-the-difference-between-maximum-likelihood-estimation-gradient-descent/183872#183872)
+- Метод максимального правдоподобия --- не единственный способ оценить параметр, смотрите, например, Maximum Spacing Estimation [@cheng83; @ranneby84; @anatolyev05], см. `msedist()` из пакета `fitdistrplus`.
