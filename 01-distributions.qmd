@@ -128,7 +128,8 @@ round(dbinom(x = 102, size = 118, prob = 0.9), 3) |>
 
 ```{r}
 #| echo: false
-which.max(round(dbinom(x = 1:118, size = 118, prob = 0.9), 3)) |> 
+round(dbinom(x = 1:118, size = 118, prob = 0.9), 3) |> 
+  which.max()
   check_question()
 ```
 

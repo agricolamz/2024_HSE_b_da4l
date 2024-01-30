@@ -10,6 +10,8 @@ book:
     - index.qmd
     - 01-distributions.qmd
     - 02-likelihood.qmd
+    - 03-mixture-models.qmd
+    - 04-intro-to-Bayes.qmd
 
 callout-appearance: simple
 callout-icon: false
@@ -18,6 +20,3 @@ bibliography: bibliography.bib
 format:
   html:
     theme: cosmo
-
-
-
