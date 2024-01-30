@@ -237,6 +237,7 @@ window.Quarto = {
   <li><a href="#пример-с-непрерывным-распределением" id="toc-пример-с-непрерывным-распределением" class="nav-link" data-scroll-target="#пример-с-непрерывным-распределением"><span class="header-section-number">2.3</span> Пример с непрерывным распределением</a></li>
   <li><a href="#метод-максимального-правдоподобия-mle" id="toc-метод-максимального-правдоподобия-mle" class="nav-link" data-scroll-target="#метод-максимального-правдоподобия-mle"><span class="header-section-number">2.4</span> Метод максимального правдоподобия (MLE)</a></li>
   <li><a href="#логорифм-функции-правдоподобия" id="toc-логорифм-функции-правдоподобия" class="nav-link" data-scroll-target="#логорифм-функции-правдоподобия"><span class="header-section-number">2.5</span> Логорифм функции правдоподобия</a></li>
+  <li><a href="#послесловие" id="toc-послесловие" class="nav-link" data-scroll-target="#послесловие"><span class="header-section-number">2.6</span> Послесловие</a></li>
   </ul>
 </nav>
     </div>
@@ -304,14 +305,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_3580" onsubmit="return validate_form_3580()" method="post">
-<input type="text" placeholder="0.123" name="answer_3580">
+<form name="form_81588" onsubmit="return validate_form_81588()" method="post">
+<input type="text" placeholder="0.123" name="answer_81588">
 <input type="submit" value="check">
-<div id="result_3580"></div>
+<div id="result_81588"></div>
 </form>
-<script>function validate_form_3580() {var x, text; var x = document.forms['form_3580']['answer_3580'].value;if (x == '0.267'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_3580').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_81588() {var x, text; var x = document.forms['form_81588']['answer_81588'].value;if (x == '0.267'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_81588').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_3580').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_81588').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -329,14 +330,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_64596" onsubmit="return validate_form_64596()" method="post">
-<input type="text" placeholder="0.123" name="answer_64596">
+<form name="form_76982" onsubmit="return validate_form_76982()" method="post">
+<input type="text" placeholder="0.123" name="answer_76982">
 <input type="submit" value="check">
-<div id="result_64596"></div>
+<div id="result_76982"></div>
 </form>
-<script>function validate_form_64596() {var x, text; var x = document.forms['form_64596']['answer_64596'].value;if (x == '0.06'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_64596').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_76982() {var x, text; var x = document.forms['form_76982']['answer_76982'].value;if (x == '0.06'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_76982').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_3580').innerText == 'Correct'; res2 = document.getElementById('result_64596').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_81588').innerText == 'Correct'; res2 = document.getElementById('result_76982').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -568,14 +569,30 @@ lambda 2.782715 0.02128182</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="послесловие" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="послесловие"><span class="header-section-number">2.6</span> Послесловие</h2>
+<ul>
+<li>Не стоит путать <a href="https://stats.stackexchange.com/questions/183871/what-is-the-difference-between-maximum-likelihood-estimation-gradient-descent/183872#183872">MLE c градиентным спуском</a></li>
+<li>MLE — не единственный способ, смотрите, например, есть Maximum Spacing Estimation <span class="citation" data-cites="cheng83 ranneby84 anatolyev05">(<a href="#ref-cheng83" role="doc-biblioref">Cheng and Amin 1983</a>; <a href="#ref-ranneby84" role="doc-biblioref">Ranneby 1984</a>; <a href="#ref-anatolyev05" role="doc-biblioref">Anatolyev and Kosenok 2005</a>)</span>, см. <code>msedist()</code> из пакета <code>fitdistrplus</code>.</li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-anatolyev05" class="csl-entry" role="listitem">
+Anatolyev, Stanislav, and Grigory Kosenok. 2005. <span>“An Alternative to Maximum Likelihood Based on Spacings.”</span> <em>Econometric Theory</em> 21 (2): 472–76.
+</div>
+<div id="ref-cheng83" class="csl-entry" role="listitem">
+Cheng, R. C. H., and N. A. K. Amin. 1983. <span>“Estimating Parameters in Continuous Univariate Distributions with a Shifted Origin.”</span> <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 45 (3): 394–403.
+</div>
 <div id="ref-coretta2016" class="csl-entry" role="listitem">
 Coretta, Stefano. 2016. <span>“Vowel Duration and Aspiration Effects in Icelandic.”</span> University of York.
 </div>
 <div id="ref-hillenbrand95" class="csl-entry" role="listitem">
 Hillenbrand, James, Laura A Getty, Michael J Clark, and Kimberlee Wheeler. 1995. <span>“Acoustic Characteristics of American English Vowels.”</span> <em>The Journal of the Acoustical Society of America</em> 97 (5): 3099–3111.
+</div>
+<div id="ref-ranneby84" class="csl-entry" role="listitem">
+Ranneby, Bo. 1984. <span>“The Maximum Spacing Method. An Estimation Method Related to the Maximum Likelihood Method.”</span> <em>Scandinavian Journal of Statistics</em>, 93–112.
 </div>
 <div id="ref-rosenbach03" class="csl-entry" role="listitem">
 Rosenbach, Anette. 2003. <span>“Aspects of Iconicity and Economy in the Choice Between the <em>s-</em>Genitive and the <em>of-</em>Genitive in <span>E</span>nglish.”</span> In <em>Determinants of Grammatical Variation in English</em>, edited by Günter Rohdenburg and Britta Mondorf. Berlin, New York: Mouton de Gruyter.

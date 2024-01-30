@@ -265,8 +265,6 @@ tibble(p = seq(0.01, 0.99, 0.01),
   scale_x_continuous(breaks = c(0:5*0.25, 0.33))
 ```
 
-
-
 ```{r, echo = FALSE}
 set.seed(42)
 v <- sample(0:2, 10, replace = TRUE)
@@ -292,3 +290,7 @@ tibble(p = seq(0.01, 0.99, 0.01),
   scale_x_continuous(breaks = c(0:5*0.25, 0.59))
 ```
 
+## Послесловие
+
+- Не стоит путать [MLE c градиентным спуском](https://stats.stackexchange.com/questions/183871/what-is-the-difference-between-maximum-likelihood-estimation-gradient-descent/183872#183872)
+- MLE --- не единственный способ, смотрите, например, есть Maximum Spacing Estimation [@cheng83; @ranneby84; @anatolyev05], см. `msedist()` из пакета `fitdistrplus`.
