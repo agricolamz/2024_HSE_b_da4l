@@ -5,7 +5,7 @@ project:
 book:
   title: "daR4hs"
   author: "Г. А. Мороз"
-  repo-url: https://agricolamz.github.io/2024_HSE_b_da4l/
+  repo-url: https://github.com/agricolamz/2024_HSE_b_da4l/
   chapters:
     - index.qmd
     - 01-distributions.qmd
