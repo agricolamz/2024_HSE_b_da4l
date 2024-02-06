@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -222,6 +222,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Байесовский статистический вывод</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Байесовский доверительный интервал</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Bayes-factor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Коэффициент Байеса</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -305,14 +317,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_40866" onsubmit="return validate_form_40866()" method="post">
-<input type="text" placeholder="0.123" name="answer_40866">
+<form name="form_30188" onsubmit="return validate_form_30188()" method="post">
+<input type="text" placeholder="0.123" name="answer_30188">
 <input type="submit" value="check">
-<div id="result_40866"></div>
+<div id="result_30188"></div>
 </form>
-<script>function validate_form_40866() {var x, text; var x = document.forms['form_40866']['answer_40866'].value;if (x == '0.267'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_40866').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_30188() {var x, text; var x = document.forms['form_30188']['answer_30188'].value;if (x == '0.267'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_30188').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_40866').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_30188').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -330,14 +342,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_45211" onsubmit="return validate_form_45211()" method="post">
-<input type="text" placeholder="0.123" name="answer_45211">
+<form name="form_37962" onsubmit="return validate_form_37962()" method="post">
+<input type="text" placeholder="0.123" name="answer_37962">
 <input type="submit" value="check">
-<div id="result_45211"></div>
+<div id="result_37962"></div>
 </form>
-<script>function validate_form_45211() {var x, text; var x = document.forms['form_45211']['answer_45211'].value;if (x == '0.06'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_45211').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_37962() {var x, text; var x = document.forms['form_37962']['answer_37962'].value;if (x == '0.06'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_37962').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_40866').innerText == 'Correct'; res2 = document.getElementById('result_45211').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_30188').innerText == 'Correct'; res2 = document.getElementById('result_37962').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -768,7 +780,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

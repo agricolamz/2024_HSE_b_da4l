@@ -12,6 +12,8 @@ book:
     - 02-likelihood.qmd
     - 03-mixture-models.qmd
     - 04-intro-to-Bayes.qmd
+    - 05-confidence-intervals.qmd
+    - 06-Bayes-factor.qmd
 
 callout-appearance: simple
 callout-icon: false

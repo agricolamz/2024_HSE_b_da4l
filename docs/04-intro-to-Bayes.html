@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -84,6 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./05-confidence-intervals.html" rel="next">
 <link href="./03-mixture-models.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -219,6 +220,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./04-intro-to-Bayes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Байесовский статистический вывод</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Байесовский доверительный интервал</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Bayes-factor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Коэффициент Байеса</span></span></a>
   </div>
 </li>
     </ul>
@@ -383,14 +396,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_48975" onsubmit="return validate_form_48975()" method="post">
-<input type="text" placeholder="" name="answer_48975">
+<form name="form_41201" onsubmit="return validate_form_41201()" method="post">
+<input type="text" placeholder="" name="answer_41201">
 <input type="submit" value="check">
-<div id="result_48975"></div>
+<div id="result_41201"></div>
 </form>
-<script>function validate_form_48975() {var x, text; var x = document.forms['form_48975']['answer_48975'].value;if (x == '0.905'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_48975').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_41201() {var x, text; var x = document.forms['form_41201']['answer_41201'].value;if (x == '0.905'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_41201').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_48975').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_41201').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -441,8 +454,8 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display no-overflow-x">
-<form name="form_71620" onsubmit="return validate_form_71620()" method="post">
-<select name="answer_71620">
+<form name="form_99972" onsubmit="return validate_form_99972()" method="post">
+<select name="answer_99972">
 <option>Auckland</option>
 <option>Beijing</option>
 <option>Chicago</option>
@@ -450,11 +463,11 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <option>San Diego</option>
 </select>
 <input type="submit" value="check">
-<div id="result_71620"></div>
+<div id="result_99972"></div>
 </form>
-<script>function validate_form_71620() {var x, text; var x = document.forms['form_71620']['answer_71620'].value;if (x == 'San Diego'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_71620').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_99972() {var x, text; var x = document.forms['form_99972']['answer_99972'].value;if (x == 'San Diego'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_99972').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_48975').innerText == 'Correct'; res2 = document.getElementById('result_71620').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -471,14 +484,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_60685" onsubmit="return validate_form_60685()" method="post">
-<input type="text" placeholder="" name="answer_60685">
+<form name="form_94188" onsubmit="return validate_form_94188()" method="post">
+<input type="text" placeholder="" name="answer_94188">
 <input type="submit" value="check">
-<div id="result_60685"></div>
+<div id="result_94188"></div>
 </form>
-<script>function validate_form_60685() {var x, text; var x = document.forms['form_60685']['answer_60685'].value;if (x == '0.549'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_60685').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_94188() {var x, text; var x = document.forms['form_94188']['answer_94188'].value;if (x == '0.549'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_94188').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_48975').innerText == 'Correct'; res2 = document.getElementById('result_71620').innerText == 'Correct'; res3 = document.getElementById('result_60685').innerText == 'Correct';text = res1 + res2 + res3;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct'; res3 = document.getElementById('result_94188').innerText == 'Correct';text = res1 + res2 + res3;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -567,14 +580,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_81318" onsubmit="return validate_form_81318()" method="post">
-<input type="text" placeholder="" name="answer_81318">
+<form name="form_7537" onsubmit="return validate_form_7537()" method="post">
+<input type="text" placeholder="" name="answer_7537">
 <input type="submit" value="check">
-<div id="result_81318"></div>
+<div id="result_7537"></div>
 </form>
-<script>function validate_form_81318() {var x, text; var x = document.forms['form_81318']['answer_81318'].value;if (x == '200'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_81318').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_7537() {var x, text; var x = document.forms['form_7537']['answer_7537'].value;if (x == '200'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_7537').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_48975').innerText == 'Correct'; res2 = document.getElementById('result_71620').innerText == 'Correct'; res3 = document.getElementById('result_60685').innerText == 'Correct'; res4 = document.getElementById('result_81318').innerText == 'Correct';text = res1 + res2 + res3 + res4;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct'; res3 = document.getElementById('result_94188').innerText == 'Correct'; res4 = document.getElementById('result_7537').innerText == 'Correct';text = res1 + res2 + res3 + res4;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -591,14 +604,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_23354" onsubmit="return validate_form_23354()" method="post">
-<input type="text" placeholder="" name="answer_23354">
+<form name="form_94912" onsubmit="return validate_form_94912()" method="post">
+<input type="text" placeholder="" name="answer_94912">
 <input type="submit" value="check">
-<div id="result_23354"></div>
+<div id="result_94912"></div>
 </form>
-<script>function validate_form_23354() {var x, text; var x = document.forms['form_23354']['answer_23354'].value;if (x == '40'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_23354').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_94912() {var x, text; var x = document.forms['form_94912']['answer_94912'].value;if (x == '40'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_94912').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3, res4, res5;res1 = document.getElementById('result_48975').innerText == 'Correct'; res2 = document.getElementById('result_71620').innerText == 'Correct'; res3 = document.getElementById('result_60685').innerText == 'Correct'; res4 = document.getElementById('result_81318').innerText == 'Correct'; res5 = document.getElementById('result_23354').innerText == 'Correct';text = res1 + res2 + res3 + res4 + res5;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4, res5;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct'; res3 = document.getElementById('result_94188').innerText == 'Correct'; res4 = document.getElementById('result_7537').innerText == 'Correct'; res5 = document.getElementById('result_94912').innerText == 'Correct';text = res1 + res2 + res3 + res4 + res5;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -817,7 +830,7 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>posterior_simulation <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">shape1 =</span> <span class="dv">20</span>, <span class="at">shape2 =</span> <span class="dv">70</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_simulation <span class="sc">&gt;</span> <span class="fl">0.3</span>)<span class="sc">/</span><span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.04</code></pre>
+<pre><code>[1] 0.0448</code></pre>
 </div>
 </div>
 <p>И это не p-value! Это настоящие вероятности!</p>
@@ -1001,7 +1014,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1229,6 +1247,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./05-confidence-intervals.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Байесовский доверительный интервал</span>">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Байесовский доверительный интервал</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

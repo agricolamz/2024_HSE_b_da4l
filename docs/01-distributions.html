@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -222,6 +222,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Байесовский статистический вывод</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-confidence-intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Байесовский доверительный интервал</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Bayes-factor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Коэффициент Байеса</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -348,14 +360,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_19430" onsubmit="return validate_form_19430()" method="post">
-<input type="text" placeholder="-12.345" name="answer_19430">
+<form name="form_573" onsubmit="return validate_form_573()" method="post">
+<input type="text" placeholder="-12.345" name="answer_573">
 <input type="submit" value="check">
-<div id="result_19430"></div>
+<div id="result_573"></div>
 </form>
-<script>function validate_form_19430() {var x, text; var x = document.forms['form_19430']['answer_19430'].value;if (x == '-40.704'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_19430').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_573() {var x, text; var x = document.forms['form_573']['answer_573'].value;if (x == '-40.704'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_573').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_19430').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_573').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -372,14 +384,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_61171" onsubmit="return validate_form_61171()" method="post">
-<input type="text" placeholder="0.123" name="answer_61171">
+<form name="form_68179" onsubmit="return validate_form_68179()" method="post">
+<input type="text" placeholder="0.123" name="answer_68179">
 <input type="submit" value="check">
-<div id="result_61171"></div>
+<div id="result_68179"></div>
 </form>
-<script>function validate_form_61171() {var x, text; var x = document.forms['form_61171']['answer_61171'].value;if (x == '0.655'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_61171').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_68179() {var x, text; var x = document.forms['form_68179']['answer_68179'].value;if (x == '0.655'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_68179').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_19430').innerText == 'Correct'; res2 = document.getElementById('result_61171').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_573').innerText == 'Correct'; res2 = document.getElementById('result_68179').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -398,12 +410,12 @@ window.Quarto = {
 <div class="cell-output-display">
 <details>
 <summary>ответы:</summary>
-<div id="hint_27028" onclick="return show_hint_27028()">недостаток 1</div>
-<div id="result_27028" onclick="return show_hint_27028()"></div>
-<script>function show_hint_27028(){var x = document.getElementById('result_27028').innerHTML; if(!x){document.getElementById('result_27028').innerHTML = 'Согласно данной модели, количество фонем в языках может принимать значение равное любому действительному числу, в то время как в данных мы наблюдаем только целые числа.';} else {document.getElementById('result_27028').innerHTML = '';}}</script>
-<div id="hint_46967" onclick="return show_hint_46967()">недостаток 2</div>
-<div id="result_46967" onclick="return show_hint_46967()"></div>
-<script>function show_hint_46967(){var x = document.getElementById('result_46967').innerHTML; if(!x){document.getElementById('result_46967').innerHTML = 'Данная модель предсказывает, что количество фонем 0.4% языков  меньше нуля, что представляется невозможным с точки зрения лингвистики.';} else {document.getElementById('result_46967').innerHTML = '';}}</script>
+<div id="hint_23566" onclick="return show_hint_23566()">недостаток 1</div>
+<div id="result_23566" onclick="return show_hint_23566()"></div>
+<script>function show_hint_23566(){var x = document.getElementById('result_23566').innerHTML; if(!x){document.getElementById('result_23566').innerHTML = 'Согласно данной модели, количество фонем в языках может принимать значение равное любому действительному числу, в то время как в данных мы наблюдаем только целые числа.';} else {document.getElementById('result_23566').innerHTML = '';}}</script>
+<div id="hint_1587" onclick="return show_hint_1587()">недостаток 2</div>
+<div id="result_1587" onclick="return show_hint_1587()"></div>
+<script>function show_hint_1587(){var x = document.getElementById('result_1587').innerHTML; if(!x){document.getElementById('result_1587').innerHTML = 'Данная модель предсказывает, что количество фонем 0.4% языков  меньше нуля, что представляется невозможным с точки зрения лингвистики.';} else {document.getElementById('result_1587').innerHTML = '';}}</script>
 </details>
 </div>
 </div>
@@ -441,14 +453,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_66041" onsubmit="return validate_form_66041()" method="post">
-<input type="text" placeholder="0.123" name="answer_66041">
+<form name="form_75331" onsubmit="return validate_form_75331()" method="post">
+<input type="text" placeholder="0.123" name="answer_75331">
 <input type="submit" value="check">
-<div id="result_66041"></div>
+<div id="result_75331"></div>
 </form>
-<script>function validate_form_66041() {var x, text; var x = document.forms['form_66041']['answer_66041'].value;if (x == '0.05'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_66041').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_75331() {var x, text; var x = document.forms['form_75331']['answer_75331'].value;if (x == '0.05'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_75331').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_19430').innerText == 'Correct'; res2 = document.getElementById('result_61171').innerText == 'Correct'; res3 = document.getElementById('result_66041').innerText == 'Correct';text = res1 + res2 + res3;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_573').innerText == 'Correct'; res2 = document.getElementById('result_68179').innerText == 'Correct'; res3 = document.getElementById('result_75331').innerText == 'Correct';text = res1 + res2 + res3;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -465,14 +477,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_51619" onsubmit="return validate_form_51619()" method="post">
-<input type="text" placeholder="" name="answer_51619">
+<form name="form_24700" onsubmit="return validate_form_24700()" method="post">
+<input type="text" placeholder="" name="answer_24700">
 <input type="submit" value="check">
-<div id="result_51619"></div>
+<div id="result_24700"></div>
 </form>
-<script>function validate_form_51619() {var x, text; var x = document.forms['form_51619']['answer_51619'].value;if (x == '107'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_51619').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_24700() {var x, text; var x = document.forms['form_24700']['answer_24700'].value;if (x == '107'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_24700').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_19430').innerText == 'Correct'; res2 = document.getElementById('result_61171').innerText == 'Correct'; res3 = document.getElementById('result_66041').innerText == 'Correct'; res4 = document.getElementById('result_51619').innerText == 'Correct';text = res1 + res2 + res3 + res4;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_573').innerText == 'Correct'; res2 = document.getElementById('result_68179').innerText == 'Correct'; res3 = document.getElementById('result_75331').innerText == 'Correct'; res4 = document.getElementById('result_24700').innerText == 'Correct';text = res1 + res2 + res3 + res4;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -509,14 +521,14 @@ window.Quarto = {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_68546" onsubmit="return validate_form_68546()" method="post">
-<input type="text" placeholder="0.123" name="answer_68546">
+<form name="form_69689" onsubmit="return validate_form_69689()" method="post">
+<input type="text" placeholder="0.123" name="answer_69689">
 <input type="submit" value="check">
-<div id="result_68546"></div>
+<div id="result_69689"></div>
 </form>
-<script>function validate_form_68546() {var x, text; var x = document.forms['form_68546']['answer_68546'].value;if (x == '0.081'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_68546').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_69689() {var x, text; var x = document.forms['form_69689']['answer_69689'].value;if (x == '0.081'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_69689').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3, res4, res5;res1 = document.getElementById('result_19430').innerText == 'Correct'; res2 = document.getElementById('result_61171').innerText == 'Correct'; res3 = document.getElementById('result_66041').innerText == 'Correct'; res4 = document.getElementById('result_51619').innerText == 'Correct'; res5 = document.getElementById('result_68546').innerText == 'Correct';text = res1 + res2 + res3 + res4 + res5;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4, res5;res1 = document.getElementById('result_573').innerText == 'Correct'; res2 = document.getElementById('result_68179').innerText == 'Correct'; res3 = document.getElementById('result_75331').innerText == 'Correct'; res4 = document.getElementById('result_24700').innerText == 'Correct'; res5 = document.getElementById('result_69689').innerText == 'Correct';text = res1 + res2 + res3 + res4 + res5;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -867,7 +879,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
