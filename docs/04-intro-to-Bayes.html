@@ -122,6 +122,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -346,42 +348,42 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">product =</span> prior<span class="sc">*</span>likelihood,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  model prior likelihood product posterior
-  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-1 ham     0.5      0.135  0.0675     0.584
-2 spam    0.5      0.096  0.048      0.416</code></pre>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["model"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prior"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["likelihood"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["product"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["posterior"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"ham","2":"0.5","3":"0.135","4":"0.0675","5":"0.5844156"},{"1":"spam","2":"0.5","3":"0.096","4":"0.0480","5":"0.4155844"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Вот мы и сделали байесовский апдейт. Теперь апостериорное распределение, которое мы получили на предыдущем шаге, мы можем использовать в новом апдейте. Следующее слово в сообщении типа <code>NUM</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior_2 =</span> <span class="fu">c</span>(<span class="fl">0.584</span>, <span class="fl">0.416</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_2 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">product_2 =</span> prior_2<span class="sc">*</span>likelihood_2,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior_2 =</span> product_2<span class="sc">/</span><span class="fu">sum</span>(product_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  model prior_2 likelihood_2 product_2 posterior_2
-  &lt;chr&gt;   &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-1 ham     0.584        0.016   0.00934       0.161
-2 spam    0.416        0.117   0.0487        0.839</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior_2 =</span> <span class="fu">c</span>(<span class="fl">0.584</span>, <span class="fl">0.416</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_2 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">product_2 =</span> prior_2<span class="sc">*</span>likelihood_2,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior_2 =</span> product_2<span class="sc">/</span><span class="fu">sum</span>(product_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["model"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prior_2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["likelihood_2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["product_2"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["posterior_2"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"ham","2":"0.584","3":"0.016","4":"0.009344","5":"0.161059"},{"1":"spam","2":"0.416","3":"0.117","4":"0.048672","5":"0.838941"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Уже на второй итерации, наша модель почти уверена, что это сообщение <code>spam</code>. На третьей итерации уверенность только растет:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior_3 =</span> <span class="fu">c</span>(<span class="fl">0.161</span>, <span class="fl">0.839</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_3 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">product_3 =</span> prior_3<span class="sc">*</span>likelihood_3,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior_3 =</span> product_3<span class="sc">/</span><span class="fu">sum</span>(product_3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  model prior_3 likelihood_3 product_3 posterior_3
-  &lt;chr&gt;   &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-1 ham     0.161        0.016   0.00258      0.0256
-2 spam    0.839        0.117   0.0982       0.974 </code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior_3 =</span> <span class="fu">c</span>(<span class="fl">0.161</span>, <span class="fl">0.839</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_3 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">product_3 =</span> prior_3<span class="sc">*</span>likelihood_3,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior_3 =</span> product_3<span class="sc">/</span><span class="fu">sum</span>(product_3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["model"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prior_3"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["likelihood_3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["product_3"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["posterior_3"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"ham","2":"0.161","3":"0.016","4":"0.002576","5":"0.02557103"},{"1":"spam","2":"0.839","3":"0.117","4":"0.098163","5":"0.97442897"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -396,49 +398,49 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_41201" onsubmit="return validate_form_41201()" method="post">
-<input type="text" placeholder="" name="answer_41201">
+<form name="form_18212" onsubmit="return validate_form_18212()" method="post">
+<input type="text" placeholder="0.123" name="answer_18212">
 <input type="submit" value="check">
-<div id="result_41201"></div>
+<div id="result_18212"></div>
 </form>
-<script>function validate_form_41201() {var x, text; var x = document.forms['form_41201']['answer_41201'].value;if (x == '0.905'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_41201').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_18212() {var x, text; var x = document.forms['form_18212']['answer_18212'].value;if (x == '0.905'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_18212').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_41201').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_18212').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
 </div>
 </div>
 <p>Из формулы Байеса следует, что не обязательно каждый раз делить на нормализующий делитель, это можно сделать единожды.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior =</span> <span class="fl">0.5</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_2 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">product =</span> prior<span class="sc">*</span>likelihood<span class="sc">*</span>likelihood_2<span class="sc">*</span>likelihood_2,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 6
-  model prior likelihood likelihood_2   product posterior
-  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 ham     0.5      0.135        0.016 0.0000173    0.0256
-2 spam    0.5      0.096        0.117 0.000657     0.974 </code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior =</span> <span class="fl">0.5</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_2 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">product =</span> prior<span class="sc">*</span>likelihood<span class="sc">*</span>likelihood_2<span class="sc">*</span>likelihood_2,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["model"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prior"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["likelihood"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["likelihood_2"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["product"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["posterior"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"ham","2":"0.5","3":"0.135","4":"0.016","5":"0.000017280","6":"0.0256246"},{"1":"spam","2":"0.5","3":"0.096","4":"0.117","5":"0.000657072","6":"0.9743754"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Из приведенных рассуждений также следует, что все равно в каком порядке мы производим байесовский апдейт: мы могли сначала умножить на значение правдоподобия для категории <code>NUM</code> и лишь в конце на значение правдоподобия <code>VERB</code>.</p>
 <p>Также стоит отметить, что если данных много, то через какое-то время становится все равно, какое у нас было априорное распределение. Даже в нашем примере, в котором мы проанализировали первые три слова сообщения, модель, прогнозирующая, что сообщение спамерское, выиграет, даже если, согласно априорному распределению, спамерским является каждое 20 сообщение:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior =</span> <span class="fu">c</span>(<span class="fl">0.95</span>, <span class="fl">0.05</span>),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_2 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">product =</span> prior<span class="sc">*</span>likelihood<span class="sc">*</span>likelihood_2<span class="sc">*</span>likelihood_2,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 6
-  model prior likelihood likelihood_2   product posterior
-  &lt;chr&gt; &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 ham    0.95      0.135        0.016 0.0000328     0.333
-2 spam   0.05      0.096        0.117 0.0000657     0.667</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">prior =</span> <span class="fu">c</span>(<span class="fl">0.95</span>, <span class="fl">0.05</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">likelihood_2 =</span> <span class="fu">c</span>(<span class="fl">0.016</span>, <span class="fl">0.117</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">product =</span> prior<span class="sc">*</span>likelihood<span class="sc">*</span>likelihood_2<span class="sc">*</span>likelihood_2,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["model"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prior"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["likelihood"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["likelihood_2"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["product"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["posterior"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"ham","2":"0.95","3":"0.135","4":"0.016","5":"0.0000328320","6":"0.3331872"},{"1":"spam","2":"0.05","3":"0.096","4":"0.117","5":"0.0000657072","6":"0.6668128"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Самым главным отличием байесовского статистического вывода от фриквентистского, является то, что мы в результате получаем вероятность каждой из моделей. Это очень значительно отличается от фриквентистской практики нулевых гипотез и p-value, в соответствии с которыми мы можем лишь отвергнуть или не отвергнуть нулевую гипотезу.</p>
@@ -454,8 +456,8 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display no-overflow-x">
-<form name="form_99972" onsubmit="return validate_form_99972()" method="post">
-<select name="answer_99972">
+<form name="form_97208" onsubmit="return validate_form_97208()" method="post">
+<select name="answer_97208">
 <option>Auckland</option>
 <option>Beijing</option>
 <option>Chicago</option>
@@ -463,11 +465,11 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <option>San Diego</option>
 </select>
 <input type="submit" value="check">
-<div id="result_99972"></div>
+<div id="result_97208"></div>
 </form>
-<script>function validate_form_99972() {var x, text; var x = document.forms['form_99972']['answer_99972'].value;if (x == 'San Diego'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_99972').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_97208() {var x, text; var x = document.forms['form_97208']['answer_97208'].value;if (x == 'San Diego'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_97208').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2;res1 = document.getElementById('result_18212').innerText == 'Correct'; res2 = document.getElementById('result_97208').innerText == 'Correct';text = res1 + res2;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -484,14 +486,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_94188" onsubmit="return validate_form_94188()" method="post">
-<input type="text" placeholder="" name="answer_94188">
+<form name="form_48481" onsubmit="return validate_form_48481()" method="post">
+<input type="text" placeholder="" name="answer_48481">
 <input type="submit" value="check">
-<div id="result_94188"></div>
+<div id="result_48481"></div>
 </form>
-<script>function validate_form_94188() {var x, text; var x = document.forms['form_94188']['answer_94188'].value;if (x == '0.549'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_94188').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_48481() {var x, text; var x = document.forms['form_48481']['answer_48481'].value;if (x == '0.549'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_48481').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct'; res3 = document.getElementById('result_94188').innerText == 'Correct';text = res1 + res2 + res3;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3;res1 = document.getElementById('result_18212').innerText == 'Correct'; res2 = document.getElementById('result_97208').innerText == 'Correct'; res3 = document.getElementById('result_48481').innerText == 'Correct';text = res1 + res2 + res3;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -510,12 +512,12 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <p>Биномиальное распределение — распределение количества успехов эксперементов Бернулли из <em>n</em> попыток с вероятностью успеха <em>p</em>.</p>
 <p><span class="math display">\[P(k | n, p) = \frac{n!}{k!(n-k)!} \times p^k \times (1-p)^{n-k} =  {n \choose k} \times p^k \times (1-p)^{n-k}\]</span> <span class="math display">\[ 0 \leq p \leq 1; n, k &gt; 0\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>,</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> x, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.16</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density))<span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Биномиальное распределение p = 0.16, n = 50"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">dbinom</span>(<span class="at">x =</span> x, <span class="at">size =</span> <span class="dv">50</span>, <span class="at">prob =</span> <span class="fl">0.16</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density))<span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Биномиальное распределение p = 0.16, n = 50"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -531,12 +533,12 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <p>Бета функция:</p>
 <p><span class="math display">\[Β(α, β) = \frac{Γ(α)\times Γ(β)}{Γ(α+β)} = \frac{(α-1)!(β-1)!}{(α+β-1)!} \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>),</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">dbeta</span>(<span class="at">x =</span> x, <span class="at">shape1 =</span> <span class="dv">8</span>, <span class="at">shape2 =</span> <span class="dv">42</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density))<span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Бета распределение α = 8, β = 42"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">dbeta</span>(<span class="at">x =</span> x, <span class="at">shape1 =</span> <span class="dv">8</span>, <span class="at">shape2 =</span> <span class="dv">42</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density))<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Бета распределение α = 8, β = 42"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -547,7 +549,7 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <p>Можно поиграть с разными параметрами:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runGitHub</span>(<span class="st">"agricolamz/beta_distribution_shiny"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runGitHub</span>(<span class="st">"agricolamz/beta_distribution_shiny"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span class="math display">\[\mu = \frac{\alpha}{\alpha+\beta}\]</span></p>
 <p><span class="math display">\[\sigma^2 = \frac{\alpha\times\beta}{(\alpha+\beta)^2\times(\alpha+\beta+1)}\]</span></p>
@@ -556,7 +558,7 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <h3 data-number="4.4.3" class="anchored" data-anchor-id="байесовский-апдейт-биномиальных-данных"><span class="header-section-number">4.4.3</span> Байесовский апдейт биномиальных данных</h3>
 <p><span class="math display">\[Beta_{post}(\alpha_{post}, \beta_{post}) = Beta(\alpha_{prior}+\alpha_{data}, \beta_{prior}+\beta_{data}),\]</span> где <span class="math inline">\(Beta\)</span> — это бета распределение</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runGitHub</span>(<span class="st">"agricolamz/bayes_for_binomial_app"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runGitHub</span>(<span class="st">"agricolamz/bayes_for_binomial_app"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -580,14 +582,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_7537" onsubmit="return validate_form_7537()" method="post">
-<input type="text" placeholder="" name="answer_7537">
+<form name="form_62662" onsubmit="return validate_form_62662()" method="post">
+<input type="text" placeholder="" name="answer_62662">
 <input type="submit" value="check">
-<div id="result_7537"></div>
+<div id="result_62662"></div>
 </form>
-<script>function validate_form_7537() {var x, text; var x = document.forms['form_7537']['answer_7537'].value;if (x == '200'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_7537').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_62662() {var x, text; var x = document.forms['form_62662']['answer_62662'].value;if (x == '200'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_62662').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct'; res3 = document.getElementById('result_94188').innerText == 'Correct'; res4 = document.getElementById('result_7537').innerText == 'Correct';text = res1 + res2 + res3 + res4;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4;res1 = document.getElementById('result_18212').innerText == 'Correct'; res2 = document.getElementById('result_97208').innerText == 'Correct'; res3 = document.getElementById('result_48481').innerText == 'Correct'; res4 = document.getElementById('result_62662').innerText == 'Correct';text = res1 + res2 + res3 + res4;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -604,14 +606,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_94912" onsubmit="return validate_form_94912()" method="post">
-<input type="text" placeholder="" name="answer_94912">
+<form name="form_13097" onsubmit="return validate_form_13097()" method="post">
+<input type="text" placeholder="" name="answer_13097">
 <input type="submit" value="check">
-<div id="result_94912"></div>
+<div id="result_13097"></div>
 </form>
-<script>function validate_form_94912() {var x, text; var x = document.forms['form_94912']['answer_94912'].value;if (x == '40'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_94912').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_13097() {var x, text; var x = document.forms['form_13097']['answer_13097'].value;if (x == '40'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_13097').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1, res2, res3, res4, res5;res1 = document.getElementById('result_41201').innerText == 'Correct'; res2 = document.getElementById('result_99972').innerText == 'Correct'; res3 = document.getElementById('result_94188').innerText == 'Correct'; res4 = document.getElementById('result_7537').innerText == 'Correct'; res5 = document.getElementById('result_94912').innerText == 'Correct';text = res1 + res2 + res3 + res4 + res5;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1, res2, res3, res4, res5;res1 = document.getElementById('result_18212').innerText == 'Correct'; res2 = document.getElementById('result_97208').innerText == 'Correct'; res3 = document.getElementById('result_48481').innerText == 'Correct'; res4 = document.getElementById('result_62662').innerText == 'Correct'; res5 = document.getElementById('result_13097').innerText == 'Correct';text = res1 + res2 + res3 + res4 + res5;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -620,20 +622,20 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <section id="байесовский-апдейт-биномиальных-данных-несколько-моделей" class="level3" data-number="4.4.4">
 <h3 data-number="4.4.4" class="anchored" data-anchor-id="байесовский-апдейт-биномиальных-данных-несколько-моделей"><span class="header-section-number">4.4.4</span> Байесовский апдейт биномиальных данных: несколько моделей</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">6</span>),</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">c</span>(<span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">8</span>, <span class="at">shape2 =</span> <span class="dv">42</span>),</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">16</span>, <span class="at">shape2 =</span> <span class="dv">34</span>),</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">24</span>, <span class="at">shape2 =</span> <span class="dv">26</span>),</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">8</span><span class="sc">+</span><span class="dv">4</span>, <span class="at">shape2 =</span> <span class="dv">42</span><span class="sc">+</span><span class="dv">16</span>),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">16</span><span class="sc">+</span><span class="dv">4</span>, <span class="at">shape2 =</span> <span class="dv">34</span><span class="sc">+</span><span class="dv">16</span>),</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">24</span><span class="sc">+</span><span class="dv">4</span>, <span class="at">shape2 =</span> <span class="dv">26</span><span class="sc">+</span><span class="dv">16</span>)),</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"prior"</span>, <span class="st">"prior"</span>, <span class="st">"posterior"</span>, <span class="st">"posterior"</span>, <span class="st">"posterior"</span>), <span class="at">each =</span> <span class="dv">100</span>),</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">dataset =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior: 8, 42"</span>, <span class="st">"prior: 16, 34"</span>, <span class="st">"prior: 24, 26"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"prior: 8, 42"</span>, <span class="st">"prior: 16, 34"</span>, <span class="st">"prior: 24, 26"</span>), <span class="at">each =</span> <span class="dv">100</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density, <span class="at">color =</span> type))<span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset)<span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"data = 4, 16"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>), <span class="dv">6</span>),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">c</span>(<span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">8</span>, <span class="at">shape2 =</span> <span class="dv">42</span>),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">16</span>, <span class="at">shape2 =</span> <span class="dv">34</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">24</span>, <span class="at">shape2 =</span> <span class="dv">26</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">8</span><span class="sc">+</span><span class="dv">4</span>, <span class="at">shape2 =</span> <span class="dv">42</span><span class="sc">+</span><span class="dv">16</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">16</span><span class="sc">+</span><span class="dv">4</span>, <span class="at">shape2 =</span> <span class="dv">34</span><span class="sc">+</span><span class="dv">16</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dbeta</span>(<span class="fu">unique</span>(x), <span class="at">shape1 =</span> <span class="dv">24</span><span class="sc">+</span><span class="dv">4</span>, <span class="at">shape2 =</span> <span class="dv">26</span><span class="sc">+</span><span class="dv">16</span>)),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"prior"</span>, <span class="st">"prior"</span>, <span class="st">"posterior"</span>, <span class="st">"posterior"</span>, <span class="st">"posterior"</span>), <span class="at">each =</span> <span class="dv">100</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">dataset =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior: 8, 42"</span>, <span class="st">"prior: 16, 34"</span>, <span class="st">"prior: 24, 26"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"prior: 8, 42"</span>, <span class="st">"prior: 16, 34"</span>, <span class="st">"prior: 24, 26"</span>), <span class="at">each =</span> <span class="dv">100</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density, <span class="at">color =</span> type))<span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset)<span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"data = 4, 16"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -652,13 +654,13 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <h2 data-number="4.5" class="anchored" data-anchor-id="байесовский-апдейт-нормального-распределения"><span class="header-section-number">4.5</span> Байесовский апдейт нормального распределения</h2>
 <p>Встроенный датасет <code>ChickWeight</code> содержит вес цыплят (<code>weight</code>) в зависимости от типа диеты (<code>Diet</code>). Мы будем анализировать 20-дневных птенцов.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Time <span class="sc">==</span> <span class="dv">20</span>) <span class="ot">-&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  chicks</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>chicks <span class="sc">|&gt;</span> </span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight))<span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ChickWeight <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Time <span class="sc">==</span> <span class="dv">20</span>) <span class="ot">-&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  chicks</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>chicks <span class="sc">|&gt;</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight))<span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -672,16 +674,16 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="байесовский-апдейт-нормального-распределения-выбор-из-нескольких-моделей"><span class="header-section-number">4.5.1</span> Байесовский апдейт нормального распределения: выбор из нескольких моделей</h3>
 <p>Мы можем рассматривать эту задачу как выбор между несколькими моделями с разными средними:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">400</span>, <span class="dv">6</span>),</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">c</span>(<span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">125</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">150</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">175</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">225</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">250</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">dataset =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">400</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density, <span class="at">color =</span> <span class="fu">factor</span>(dataset)))<span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">400</span>, <span class="dv">6</span>),</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">density =</span> <span class="fu">c</span>(<span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">125</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">150</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">175</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">225</span>, <span class="at">sd =</span> <span class="dv">70</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">dnorm</span>(<span class="fu">unique</span>(x), <span class="at">mean =</span> <span class="dv">250</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">dataset =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">each =</span> <span class="dv">400</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density, <span class="at">color =</span> <span class="fu">factor</span>(dataset)))<span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -692,36 +694,32 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <p>Дальше мы можем точно так же апдейтить, как мы делали раньше:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">mu =</span> <span class="fu">seq</span>(<span class="dv">125</span>, <span class="dv">250</span>, <span class="at">by =</span> <span class="dv">25</span>),</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">prior =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">125</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">150</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">175</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">225</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">250</span>, <span class="at">sd =</span> <span class="dv">70</span>))),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">product =</span> prior<span class="sc">*</span>likelihood,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product)) <span class="ot">-&gt;</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  results</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-     mu prior likelihood   product posterior
-  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1   125 0.167  2.06e-127 3.44e-128  2.39e-15
-2   150 0.167  4.74e-120 7.90e-121  5.48e- 8
-3   175 0.167  3.08e-115 5.13e-116  3.56e- 3
-4   200 0.167  5.66e-113 9.43e-114  6.55e- 1
-5   225 0.167  2.95e-113 4.91e-114  3.41e- 1
-6   250 0.167  4.34e-116 7.23e-117  5.02e- 4</code></pre>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">mu =</span> <span class="fu">seq</span>(<span class="dv">125</span>, <span class="dv">250</span>, <span class="at">by =</span> <span class="dv">25</span>),</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">prior =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">125</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">150</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">175</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">200</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">225</span>, <span class="at">sd =</span> <span class="dv">70</span>)),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">prod</span>(<span class="fu">dnorm</span>(chicks<span class="sc">$</span>weight, <span class="at">mean =</span> <span class="dv">250</span>, <span class="at">sd =</span> <span class="dv">70</span>))),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">product =</span> prior<span class="sc">*</span>likelihood,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">posterior =</span> product<span class="sc">/</span><span class="fu">sum</span>(product)) <span class="ot">-&gt;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  results</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mu"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["prior"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["likelihood"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["product"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["posterior"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"125","2":"0.1666667","3":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002064365","4":"0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003440608","5":"0.000000000000002388819"},{"1":"150","2":"0.1666667","3":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000047384329377338","4":"0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000078973882295564","5":"0.000000054831688517382"},{"1":"175","2":"0.1666667","3":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003078411340211131696","4":"0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005130685567018552452","5":"0.003562242917709386100"},{"1":"200","2":"0.1666667","3":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000566059603710931659379","4":"0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000943432672851552765631","5":"0.655026762662052508546"},{"1":"225","2":"0.1666667","3":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000294605789256285052085","4":"0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000491009648760475086808","5":"0.340908757899263947788"},{"1":"250","2":"0.1666667","3":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000433974280487837110","4":"0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000723290467479728469","5":"0.000502181689283212520"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mu, prior, posterior) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"type"</span>, <span class="at">values_to =</span> <span class="st">"probability"</span>, prior<span class="sc">:</span>posterior) <span class="sc">|&gt;</span> </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mu, probability, <span class="at">color =</span> type))<span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"изменение вероятностей для каждой из моделей"</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"μ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>results <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mu, prior, posterior) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"type"</span>, <span class="at">values_to =</span> <span class="st">"probability"</span>, prior<span class="sc">:</span>posterior) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mu, probability, <span class="at">color =</span> type))<span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"изменение вероятностей для каждой из моделей"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"μ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -739,18 +737,18 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <p><span class="math display">\[\mu_{post} = \frac{\mu_{prior} \times \tau_{prior} + \mu_{data} \times \tau_{data}}{\tau_{post}}\]</span></p>
 <p>Так что если нашим априорным распределением мы назовем нормальное распределение со средним около 180 и стандартным отклонением 90, то процесс байесовского апдейта будет выглядеть вот так:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sd_prior <span class="ot">&lt;-</span> <span class="dv">90</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sd_data <span class="ot">&lt;-</span> <span class="fu">sd</span>(chicks<span class="sc">$</span>weight)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>sd_post <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>sd_prior<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>sd_data<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>mean_prior <span class="ot">&lt;-</span> <span class="dv">180</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>mean_data <span class="ot">&lt;-</span> <span class="fu">mean</span>(chicks<span class="sc">$</span>weight)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>mean_post <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(<span class="fu">c</span>(mean_prior, mean_data), <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span>sd_prior<span class="sc">^</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span>sd_data<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>chicks <span class="sc">|&gt;</span> </span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight)) <span class="sc">+</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)))<span class="sc">+</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(mean_prior,  sd_prior), <span class="at">color =</span> <span class="st">"lightblue"</span>)<span class="sc">+</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(mean_post,  sd_post), <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sd_prior <span class="ot">&lt;-</span> <span class="dv">90</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sd_data <span class="ot">&lt;-</span> <span class="fu">sd</span>(chicks<span class="sc">$</span>weight)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sd_post <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>sd_prior<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>sd_data<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>mean_prior <span class="ot">&lt;-</span> <span class="dv">180</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>mean_data <span class="ot">&lt;-</span> <span class="fu">mean</span>(chicks<span class="sc">$</span>weight)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>mean_post <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(<span class="fu">c</span>(mean_prior, mean_data), <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span>sd_prior<span class="sc">^</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span>sd_data<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>chicks <span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight)) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)))<span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(mean_prior,  sd_prior), <span class="at">color =</span> <span class="st">"lightblue"</span>)<span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(mean_post,  sd_post), <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -760,7 +758,7 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runGitHub</span>(<span class="st">"agricolamz/bayes_for_normal_app"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runGitHub</span>(<span class="st">"agricolamz/bayes_for_normal_app"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -827,10 +825,10 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </ol>
 <p>Допустим, мы получили апостериорное бета распределение с параметрами 20 и 70. Какова вероятность наблюдать значения больше 0.3?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>posterior_simulation <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">shape1 =</span> <span class="dv">20</span>, <span class="at">shape2 =</span> <span class="dv">70</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_simulation <span class="sc">&gt;</span> <span class="fl">0.3</span>)<span class="sc">/</span><span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>posterior_simulation <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">shape1 =</span> <span class="dv">20</span>, <span class="at">shape2 =</span> <span class="dv">70</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_simulation <span class="sc">&gt;</span> <span class="fl">0.3</span>)<span class="sc">/</span><span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0448</code></pre>
+<pre><code>[1] 0.0401</code></pre>
 </div>
 </div>
 <p>И это не p-value! Это настоящие вероятности!</p>

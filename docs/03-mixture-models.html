@@ -122,6 +122,8 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -423,12 +425,12 @@ loglik at estimate:  -29421.36 </code></pre>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_predict =</span> <span class="fu">ifelse</span>(n_char <span class="sc">&gt;</span> <span class="dv">63</span>, <span class="st">"predicted_spam"</span>, <span class="st">"predicted_ham"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(model_predict, type) <span class="sc">%&gt;%</span> </span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type, <span class="at">values_from =</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  model_predict    ham  spam
-  &lt;chr&gt;          &lt;int&gt; &lt;int&gt;
-1 predicted_ham   2834    25
-2 predicted_spam  1991   722</code></pre>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["model_predict"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ham"],"name":[2],"type":["int"],"align":["right"]},{"label":["spam"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"predicted_ham","2":"2834","3":"25"},{"1":"predicted_spam","2":"1991","3":"722"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 </div>
 <p>Результат не идеальный, но лучше чем помечать как спам каждое 13 сообщение <span class="math inline">\(747/(4825+747)\)</span>.</p>

@@ -107,7 +107,7 @@ tibble(model = c("ham", "spam"),
   slice(2) |> 
   pull(posterior) |> 
   round(3) |> 
-  check_question()
+  check_question(placeholder = "0.123")
 ```
 
 Из формулы Байеса следует, что не обязательно каждый раз делить на нормализующий делитель, это можно сделать единожды.
