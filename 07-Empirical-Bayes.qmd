@@ -166,7 +166,7 @@ vowels_tt01 |>
   geom_histogram(aes(y = after_stat(density)), fill = "grey")+
   stat_function(fun = dnorm, args = list(mean_prior,  sd_prior), color = "lightblue")+
   stat_function(fun = dnorm, args = list(mean_post,  sd_post), color = "red")+
-  annotate(geom = "errorbar", y = 0, xmin = cred_int_l_80, xmax = cred_int_h_80, width = 0.001, size = 2)+
+  annotate(geom = "errorbar", y = 0, xmin = cred_int_l_80, xmax = cred_int_h_80, width = 0.001, linewidth = 2)+
   annotate(geom = "text", y = 0.001, x = mean_post, label = "80% credible interval")
 ```
 
