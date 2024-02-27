@@ -61,7 +61,8 @@ mikhalevskaja |>
   filter(feature  == "a-e") |> 
   mutate(ratio = conservative/total) |> 
   ggplot(aes(ratio))+
-  geom_histogram()
+  geom_histogram()+
+  xlim(-0.1, 1)
 ```
 
 Мы можем провести байесовский апдейт, но для этого нам нужно априорное распределение. Трюк, который предлагает байесовская эмпирическая оценка заключается в том, что априорное распределение можно попробовать получить на основании данных:
@@ -139,6 +140,7 @@ mikhalevskaja |>
 
 ```{r}
 #| echo: false
+#| message: false
 
 read_csv("https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/Coretta_2017_icelandic.csv") ->
   vowels
@@ -161,7 +163,7 @@ cred_int_h_80 <- qnorm(0.9, mean_post, sd_post)
 
 vowels_tt01 |> 
   ggplot(aes(vowel.dur)) +
-  geom_histogram(aes(y = ..density..), fill = "grey")+
+  geom_histogram(aes(y = after_stat(density)), fill = "grey")+
   stat_function(fun = dnorm, args = list(mean_prior,  sd_prior), color = "lightblue")+
   stat_function(fun = dnorm, args = list(mean_post,  sd_post), color = "red")+
   annotate(geom = "errorbar", y = 0, xmin = cred_int_l_80, xmax = cred_int_h_80, width = 0.001, size = 2)+

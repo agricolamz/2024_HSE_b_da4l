@@ -206,7 +206,7 @@ integrate(m1, 0, 1)[[1]]/integrate(m2, 0, 1)[[1]]
 
 ```{r}
 #| echo: false
-read_csv("https://raw.githubusercontent.com/agricolamz/2022_da4l/master/data/Coretta_2017_icelandic.csv") |> 
+read_csv("https://raw.githubusercontent.com/agricolamz/2024_HSE_b_da4l/master/data/Coretta_2017_icelandic.csv") |> 
   filter(speaker == "tt01") ->
   vowels
 
@@ -218,6 +218,8 @@ m2 <- function(x) dnorm(x, 85, 30) * dnorm(x,
                                            sd(vowels$vowel.dur))
 
 library(checkdown)
-check_question(round(integrate(m1, -Inf, Inf)[[1]]/integrate(m2, -Inf, Inf)[[1]], 3))
+(integrate(m1, -Inf, Inf)[[1]]/integrate(m2, -Inf, Inf)[[1]]) |> 
+  round(digits = 3) |> 
+  check_question(placeholder = "1.234")
 ```
 
