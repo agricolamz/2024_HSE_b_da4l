@@ -263,6 +263,7 @@ window.Quarto = {
   <li><a href="#интерпретация-коэфициента-байеса" id="toc-интерпретация-коэфициента-байеса" class="nav-link" data-scroll-target="#интерпретация-коэфициента-байеса"><span class="header-section-number">6.3</span> Интерпретация коэфициента Байеса</a></li>
   <li><a href="#биномиальные-данные" id="toc-биномиальные-данные" class="nav-link" data-scroll-target="#биномиальные-данные"><span class="header-section-number">6.4</span> Биномиальные данные</a></li>
   <li><a href="#сравнение-точечных-и-интервальных-моделей-основано-на-etz18" id="toc-сравнение-точечных-и-интервальных-моделей-основано-на-etz18" class="nav-link" data-scroll-target="#сравнение-точечных-и-интервальных-моделей-основано-на-etz18"><span class="header-section-number">6.5</span> Сравнение точечных и интервальных моделей (основано на <span class="citation" data-cites="etz18">(Etz et al. 2018)</span>)</a></li>
+  <li><a href="#ab-тестирование-с-пакетом-bayesab" id="toc-ab-тестирование-с-пакетом-bayesab" class="nav-link" data-scroll-target="#ab-тестирование-с-пакетом-bayesab"><span class="header-section-number">6.6</span> A/B тестирование с пакетом <code>bayesAB</code></a></li>
   </ul>
 </nav>
     </div>
@@ -562,14 +563,14 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_84356" onsubmit="return validate_form_84356()" method="post">
-<input type="text" placeholder="1.234" name="answer_84356">
+<form name="form_985" onsubmit="return validate_form_985()" method="post">
+<input type="text" placeholder="1.234" name="answer_985">
 <input type="submit" value="check">
-<div id="result_84356"></div>
+<div id="result_985"></div>
 </form>
-<script>function validate_form_84356() {var x, text; var x = document.forms['form_84356']['answer_84356'].value;if (x == '1.109'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_84356').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_985() {var x, text; var x = document.forms['form_985']['answer_985'].value;if (x == '1.109'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_985').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_84356').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_985').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
 </div>
@@ -670,6 +671,124 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <div>
 <figure class="figure">
 <p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ab-тестирование-с-пакетом-bayesab" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="ab-тестирование-с-пакетом-bayesab"><span class="header-section-number">6.6</span> A/B тестирование с пакетом <code>bayesAB</code></h2>
+<p>Опять эта задача…</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>У нас есть два диалектолога, которые поехали в экспедицию. Оба записали интервью с одним и тем же носителем, тестируя, с какой вероятностью носитель выдаст диалектную форму (1) или литературную форму (0).</p>
+<p>Результаты исследователя A: <code>c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)</code></p>
+<p>Результаты исследователя B: <code>c(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)</code></p>
+<p>У нас есть подозрение, что на результаты исследователя А повлиял прайминг, который он не контролировал. Проверьте гипотезу, если мы, в общем, не ожидаем увидеть эту диалектную черту в данной местности (Beta(1, 10)).</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesAB)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>AB <span class="ot">&lt;-</span> <span class="fu">bayesTest</span>(A,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                B,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">priors =</span> <span class="fu">c</span>(<span class="st">'alpha'</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">'beta'</span> <span class="ot">=</span> <span class="dv">10</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">distribution =</span> <span class="st">'bernoulli'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>AB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--------------------------------------------
+Distribution used: bernoulli 
+--------------------------------------------
+Using data with the following properties: 
+                A          B
+Min.    0.0000000 0.00000000
+1st Qu. 0.0000000 0.00000000
+Median  0.0000000 0.00000000
+Mean    0.1333333 0.06666667
+3rd Qu. 0.0000000 0.00000000
+Max.    1.0000000 1.00000000
+--------------------------------------------
+Conjugate Prior Distribution: Beta 
+Conjugate Prior Parameters: 
+$alpha
+[1] 1
+
+$beta
+[1] 10
+
+--------------------------------------------
+Calculated posteriors for the following parameters: 
+Probability 
+--------------------------------------------
+Monte Carlo samples generated per posterior: 
+[1] 100000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quantiles of posteriors for A and B:
+
+$Probability
+$Probability$A
+         0%         25%         50%         75%        100% 
+0.007897161 0.084889537 0.115678936 0.152038261 0.414819029 
+
+$Probability$B
+         0%         25%         50%         75%        100% 
+0.000734025 0.043519914 0.066336671 0.095816771 0.343478722 
+
+
+--------------------------------------------
+
+P(A &gt; B) by (0)%: 
+
+$Probability
+[1] 0.78253
+
+--------------------------------------------
+
+Credible Interval on (A - B) / B for interval length(s) (0.9) : 
+
+$Probability
+        5%        95% 
+-0.4560057  5.4655876 
+
+--------------------------------------------
+
+Posterior Expected Loss for choosing A over B:
+
+$Probability
+[1] 0.1315805</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
