@@ -15,7 +15,8 @@ book:
     - 05-confidence-intervals.qmd
     - 06-Bayes-factor.qmd
     - 07-Empirical-Bayes.qmd
-    - 08-Introduction-to-MCMC.qmd
+    - 08-a-b-testing.qmd
+    - 09-Introduction-to-MCMC.qmd
 
 callout-appearance: simple
 callout-icon: false
