@@ -262,6 +262,7 @@ window.Quarto = {
   <li><a href="#категориальные-данные" id="toc-категориальные-данные" class="nav-link" data-scroll-target="#категориальные-данные"><span class="header-section-number">6.2</span> Категориальные данные</a></li>
   <li><a href="#интерпретация-коэфициента-байеса" id="toc-интерпретация-коэфициента-байеса" class="nav-link" data-scroll-target="#интерпретация-коэфициента-байеса"><span class="header-section-number">6.3</span> Интерпретация коэфициента Байеса</a></li>
   <li><a href="#биномиальные-данные" id="toc-биномиальные-данные" class="nav-link" data-scroll-target="#биномиальные-данные"><span class="header-section-number">6.4</span> Биномиальные данные</a></li>
+  <li><a href="#сравнение-точечных-и-интервальных-моделей-основано-на-etz18" id="toc-сравнение-точечных-и-интервальных-моделей-основано-на-etz18" class="nav-link" data-scroll-target="#сравнение-точечных-и-интервальных-моделей-основано-на-etz18"><span class="header-section-number">6.5</span> Сравнение точечных и интервальных моделей (основано на <span class="citation" data-cites="etz18">(Etz et al. 2018)</span>)</a></li>
   </ul>
 </nav>
     </div>
@@ -485,11 +486,11 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>second_update <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">model =</span> <span class="fu">c</span>(<span class="st">"ham"</span>, <span class="st">"spam"</span>),</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prior =</span> class_ratio<span class="sc">$</span>ratio,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">product =</span> prior<span class="sc">*</span>likelihood,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">marginal_likelihood =</span> <span class="fu">sum</span>(product),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">posterior =</span> product<span class="sc">/</span>marginal_likelihood)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">prior =</span> class_ratio<span class="sc">$</span>ratio,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">likelihood =</span> <span class="fu">c</span>(<span class="fl">0.135</span>, <span class="fl">0.096</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">product =</span> prior<span class="sc">*</span>likelihood,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">marginal_likelihood =</span> <span class="fu">sum</span>(product),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">posterior =</span> product<span class="sc">/</span>marginal_likelihood)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>second_update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -561,16 +562,116 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<form name="form_10616" onsubmit="return validate_form_10616()" method="post">
-<input type="text" placeholder="1.234" name="answer_10616">
+<form name="form_77109" onsubmit="return validate_form_77109()" method="post">
+<input type="text" placeholder="1.234" name="answer_77109">
 <input type="submit" value="check">
-<div id="result_10616"></div>
+<div id="result_77109"></div>
 </form>
-<script>function validate_form_10616() {var x, text; var x = document.forms['form_10616']['answer_10616'].value;if (x == '1.109'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_10616').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
+<script>function validate_form_77109() {var x, text; var x = document.forms['form_77109']['answer_77109'].value;if (x == '1.109'){text = 'Correct';} else {text = 'I have a different answer';} document.getElementById('result_77109').innerHTML = text; evaluate_final_score(); return false;}function evaluate_final_score(){
          element = document.getElementById('checkdown_final_score');
-         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_10616').innerText == 'Correct';text = res1;element.innerHTML = text;
+         if(element === null){return false;} else {var element, text, res1;res1 = document.getElementById('result_77109').innerText == 'Correct';text = res1;element.innerHTML = text;
          return false;
          }}</script>
+</div>
+</div>
+</section>
+<section id="сравнение-точечных-и-интервальных-моделей-основано-на-etz18" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="сравнение-точечных-и-интервальных-моделей-основано-на-etz18"><span class="header-section-number">6.5</span> Сравнение точечных и интервальных моделей (основано на <span class="citation" data-cites="etz18">(<a href="#ref-etz18" role="doc-biblioref">Etz et al. 2018</a>)</span>)</h2>
+<p>До этого момента, когда мы говорили о сравнении биномиальных данных, мы обычно говорили о поиске и описании параметра <em>p</em> бета и биномиального распределений — которая в свою очередь представляет отражает нашу точечную оценку моделируемого процесса. Например, если мы пытаемся моделировать род слова (например, <em>кофе</em>), мы можем представить это в виде трех гипотез: слово относится к одному роду, к другому роду или существует вариативность:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>В большинстве случаев нас интересует не все три варианта, а лишь два: слово четко характеризуется некоторым родом или же мы наблюдаем вариативность. Если же вдруг в реальности вы видите третий вариант — значит вы недостаточно подготовились к моделированию и строить гипотезы было рано.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Представим в ходе эксперимента мы опросили 16 носителей. В таком случае мы можем описать предсказания модели при помощи двух биномиальных распределений:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Наш классификатор получился слишком строгий: либо все говорят слово в роде X, либо вариативность. Для того, чтобы допустить хоть какие-то поблажки, давайте ослабим параметр с 1 до 0.96:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Тогда предсказания модели будет выглядит вот так:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>На всякий случай, соотношение высот столбиков — это фриквентистский вариант байесовского коэффициента, который называется <strong>тест отношения правдоподобия</strong> (likelihood ratio).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Основная проблема точечных оценок заключается в том, что они оставляют достаточно много неуверенности в промежуточных значениях. Представим, что у нас не 16 наблюдений, а 90:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>В таком случае наш классификатор достаточно сильно не уверен в значениях между 65 и 75. Альтернативой являются интервальные модели:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Или вот еще возможные комбинации:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-Bayes-factor_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 
@@ -578,6 +679,9 @@ $ n    &lt;dbl&gt; 4329, 5004, 5832, 5707, 1607, 3493, 1676, 12842, 1293, 2424, 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-coretta2016" class="csl-entry" role="listitem">
 Coretta, Stefano. 2016. <span>“Vowel Duration and Aspiration Effects in Icelandic.”</span> University of York.
+</div>
+<div id="ref-etz18" class="csl-entry" role="listitem">
+Etz, Alexander, Julia M Haaf, Jeffrey N Rouder, and Joachim Vandekerckhove. 2018. <span>“Bayesian Inference and Testing Any Hypothesis You Can Specify.”</span> <em>Advances in Methods and Practices in Psychological Science</em> 1 (2): 281–95.
 </div>
 <div id="ref-rosenbach03" class="csl-entry" role="listitem">
 Rosenbach, Anette. 2003. <span>“Aspects of Iconicity and Economy in the Choice Between the <em>s-</em>Genitive and the <em>of-</em>Genitive in <span>E</span>nglish.”</span> In <em>Determinants of Grammatical Variation in English</em>, edited by Günter Rohdenburg and Britta Mondorf. Berlin, New York: Mouton de Gruyter.
