@@ -205,6 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Введение в Марковские цепи Монте-Карло</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-advanced-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Ограничения на применение регрессии</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -265,12 +271,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 $Probability
 $Probability$A
-         0%         25%         50%         75%        100% 
-0.007131713 0.085051645 0.115838076 0.151845699 0.431552612 
+        0%        25%        50%        75%       100% 
+0.00418777 0.08503266 0.11566328 0.15207639 0.42541869 
 
 $Probability$B
          0%         25%         50%         75%        100% 
-0.000726458 0.043508041 0.066353579 0.095231075 0.352369091 
+0.000640588 0.043498661 0.066354071 0.095608356 0.338130436 
 
 
 --------------------------------------------
@@ -278,22 +284,22 @@ $Probability$B
 P(A &gt; B) by (0)%: 
 
 $Probability
-[1] 0.7858
+[1] 0.78407
 
 --------------------------------------------
 
 Credible Interval on (A - B) / B for interval length(s) (0.9) : 
 
 $Probability
-        5%        95% 
--0.4487364  5.4115384 
+       5%       95% 
+-0.448656  5.442514 
 
 --------------------------------------------
 
 Posterior Expected Loss for choosing A over B:
 
 $Probability
-[1] 0.1279876</code></pre>
+[1] 0.1284849</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

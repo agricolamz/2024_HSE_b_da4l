@@ -688,12 +688,16 @@ $$\frac{y_j}{y_i}= \left(\frac{x_j}{x_i}\right) ^ {\beta_1}$$
 
 Логарифмирование --- не единственный вид траснформации:
 
-* трансформация Тьюки
-```{r, eval = FALSE}
+- трансформация Тьюки
+```{r}
+#| eval: false
+
 shiny::runGitHub("agricolamz/tukey_transform")
 ```
 
-```{r, echo= FALSE}
+```{r}
+#| echo: false
+
 data.frame(cors = c(sapply(seq(-5, -0.01, 0.01), function(i){
   abs(cor(ldt$Mean_RT, -(ldt$Freq+1)^i))
 }),
@@ -710,14 +714,16 @@ bandwidth = seq(-5, 5, 0.01)) |>
        title = "average reaction time ~ Tukey transformed word frequencies")
 ```
 
-* трансформация Бокса — Кокса
-* ...
+- трансформация Бокса — Кокса
+- ...
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 В [датасет](https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/freq_dict_2009.csv) собрана частотность разных лемм на основании корпуса НКРЯ [@lyashevskaya09] (в датасете только значения больше ipm > 10). Известно, что частотность слова связана с рангом слова (см. закон Ципфа). Постройте переменную ранга и визуализируйте связь ранга и логорифма частотности с разбивкой по частям речи. Какие части речи так и не приобрели после трансформации "приемлимую" линейную форму? (я насчитал 5 таких)
-```
+:::
 
-```{r, include=FALSE}
+```{r}
+#| include: false
+
 df <- read_tsv("data/freq_dict_2009.csv")
 df |>
   group_by(pos) |> 
@@ -727,8 +733,9 @@ df |>
   facet_wrap(~pos, scale = "free")
 ```
 
+```{r}
+#| echo: false
 
-```{r, results='asis', echo=FALSE}
 library(checkdown)
 check_question(answer = c("a", "adv", "s", "s.PROP", "v"), options = sort(unique(df$pos)), type = "checkbox")
 ```
@@ -741,7 +748,9 @@ check_question(answer = c("a", "adv", "s", "s.PROP", "v"), options = sort(unique
 
 Можно смотреть на qqplot:
 
-```{r, message=FALSE}
+```{r}
+#| message: false
+
 tibble(res = m1$residuals) |> 
   ggplot(aes(res))+
   geom_histogram(aes(y = ..density..))+
@@ -767,6 +776,7 @@ qqline(m3$residuals)
 
 ## Гетероскидастичность
 Распределение остатков непостоянно (т.е. не гомоскидастичны):
+
 ```{r}
 ldt |> 
   ggplot(aes(Mean_RT, Freq))+
@@ -774,25 +784,28 @@ ldt |>
   theme_bw()
 ```
 
-Тоже решается преобазованием данных.
+Тоже решается преобразованием данных.
 
 ## Мультиколлинеарность
 Линейная связь между некоторыми предикторами в модели.
 
-* корреляционная матрица
-* VIF (Variance inflation factor), `car::vif()`
-  * VIF = 1 (Not correlated)
-  * 1 < VIF < 5 (Moderately correlated)
-  * VIF >=5 (Highly correlated)
+- корреляционная матрица
+- VIF (Variance inflation factor), `car::vif()`
+  - VIF = 1 (Not correlated)
+  - 1 < VIF < 5 (Moderately correlated)
+  - VIF >=5 (Highly correlated)
 
 ## Независимость наблюдений
+
 Наблюдения должны быть независимы. В ином случае нужно использовать модель со смешанными эффектами.
 
 ### Линейная модель со смешанными эффектами
 
 В качестве примера мы попробуем поиграть с [законом Хердана-Хипса](https://en.wikipedia.org/wiki/Heaps%27_law), описывающий взаимосвязь количества уникальных слов в тексте в зависимости от длины текста. В датасете собраны некоторые корпуса Universal Dependencies [@ud20] и некоторые числа, посчитанные на их основании:
 
-```{r, message=FALSE}
+```{r}
+#| message: false
+
 ud <- read_csv("https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/ud_corpora.csv")
 
 ud |> 
@@ -809,14 +822,16 @@ ud |>
 
 При моделировании при помощи моделей со случайными эффектами различают:
 
-* *основные эффекты* -- это те связи, которые нас интересуют, независимые переменные (количество слов, количество уникальных слов);
-* *случайные эффекты* -- это те переменные, которые создают группировку в данных (корпус).
+- *основные эффекты* -- это те связи, которые нас интересуют, независимые переменные (количество слов, количество уникальных слов);
+- *случайные эффекты* -- это те переменные, которые создают группировку в данных (корпус).
 
 В результате моделирования появляется обобщенная модель, которая игнорирует группировку, а потом для каждого значения случайного эффекта генерируется своя регрессия, отсчитывая от обобщенной модели как от базового уровня.
 
 Рассмотрим простейший случай:
 
-```{r, message = FALSE}
+```{r}
+#| message: false
+
 library(lme4)
 library(lmerTest)
 
@@ -842,9 +857,9 @@ ggeffect(fit1) |>
   plot()
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Визуализируйте полученные модели при помощи функции `plot()`. Какие ограничения на применение линейной регрессии нарушается в наших моделях?
-```
+:::
 
 ```{r}
 plot(fit1)
@@ -920,12 +935,13 @@ plot(fit3)
 anova(fit3, fit2, fit1)
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Постройте модель со случайными угловым коэффициентом и свободным членом, устранив проблему, которую вы заметили в прошлом задании.
-```
+:::
 
+```{r}
+#| include: false
 
-```{r, include = FALSE}
 ud |> 
   filter(corpus != "UD_Arabic-PADT") ->
   ud2
@@ -944,11 +960,14 @@ ud2 |>
        caption = "данные корпусов Universal Dependencies")
 ```
 
-```{block, type = "rmdtask"}
+::: {.callout-note}
 Пользуясь знаниями из предыдущих заданий, смоделируйте связь количества слов и количества существительных. С какими проблемами вы столкнулись?
-```
+:::
 
-```{r, include = FALSE, error=TRUE}
+```{r}
+#| include: false
+#| error: true
+
 ud |> 
   filter(corpus != "UD_Arabic-PADT") ->
   ud2
