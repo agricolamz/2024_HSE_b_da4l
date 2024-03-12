@@ -84,6 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./11-inroduction_to_bayesian_regression_with_brms.html" rel="next">
 <link href="./09-Introduction-to-MCMC.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -257,6 +258,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./10-advanced-regression.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Ограничения на применение регрессии</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-inroduction_to_bayesian_regression_with_brms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Байесовский регрессионный анализ</span></span></a>
   </div>
 </li>
     </ul>
@@ -768,7 +775,7 @@ mean in group Зощенко   mean in group Чехов
 </div>
 </div>
 <p>Если переменная <code>dummy_chekhov</code> принимает значение 1, значит речь о рассказе Чехова, а если принимает значение 0, то о рассказе Зощенко. Если вставить нашу переменную в регрессионную формулу получится следующее:</p>
-<p><span class="math display">\[y_i = \hat\beta_0 + \hat\beta_1 \times \text{dummy_chekhov} + \epsilon_i,\]</span></p>
+<p><span class="math display">\[y_i = \hat\beta_0 + \hat\beta_1 \times \text{dummy-chekhov} + \epsilon_i,\]</span></p>
 <p>Так как <code>dummy_chekhov</code> принимает либо значение 1, либо значение 0, то получается, что модель предсказывает лишь два значения:</p>
 <p><span class="math display">\[y_i = \left\{\begin{array}{ll}\hat\beta_0 + \hat\beta_1 \times 1 + \epsilon_i = \hat\beta_0 + \hat\beta_1 + \epsilon_i\text{, если рассказ Чехова}\\
 \hat\beta_0 + \hat\beta_1 \times 0 + \epsilon_i = \hat\beta_0 + \epsilon_i\text{, если рассказ Зощенко}
@@ -1978,6 +1985,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./11-inroduction_to_bayesian_regression_with_brms.html" class="pagination-link" aria-label="<span class='chapter-number'>11</span>&nbsp; <span class='chapter-title'>Байесовский регрессионный анализ</span>">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Байесовский регрессионный анализ</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

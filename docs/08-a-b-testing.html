@@ -211,6 +211,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Ограничения на применение регрессии</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-inroduction_to_bayesian_regression_with_brms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Байесовский регрессионный анализ</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -271,12 +277,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 $Probability
 $Probability$A
-        0%        25%        50%        75%       100% 
-0.00418777 0.08503266 0.11566328 0.15207639 0.42541869 
+         0%         25%         50%         75%        100% 
+0.005834999 0.084866009 0.115603048 0.152251581 0.422911790 
 
 $Probability$B
-         0%         25%         50%         75%        100% 
-0.000640588 0.043498661 0.066354071 0.095608356 0.338130436 
+          0%          25%          50%          75%         100% 
+0.0007329957 0.0431226935 0.0664096706 0.0957869741 0.3555780413 
 
 
 --------------------------------------------
@@ -284,22 +290,22 @@ $Probability$B
 P(A &gt; B) by (0)%: 
 
 $Probability
-[1] 0.78407
+[1] 0.78353
 
 --------------------------------------------
 
 Credible Interval on (A - B) / B for interval length(s) (0.9) : 
 
 $Probability
-       5%       95% 
--0.448656  5.442514 
+        5%        95% 
+-0.4505789  5.5284632 
 
 --------------------------------------------
 
 Posterior Expected Loss for choosing A over B:
 
 $Probability
-[1] 0.1284849</code></pre>
+[1] 0.1290387</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
