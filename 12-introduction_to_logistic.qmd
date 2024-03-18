@@ -68,7 +68,7 @@ $$y_i = \hat{\beta_0} + \hat{\beta_1}\times x_i + \epsilon_i$$
 Мы хотим чего-то такого:
 $$\underbrace{y}_{[-\infty, +\infty]}=\underbrace{\mbox{β}_0+\mbox{β}_1\cdot x_1+\mbox{β}_2\cdot x_2 + \dots +\mbox{β}_k\cdot x_k +\mbox{ε}_i}_{[-\infty, +\infty]}$$
 Вероятность — отношение количества успехов к общему числу событий:
-$$p = \frac{\mbox{# успехов}}{\mbox{# неудач} + \mbox{# успехов}}, p \in [0, 1]$$
+$$p = \frac{\mbox{\# успехов}}{\mbox{\# неудач} + \mbox{\# успехов}}, p \in [0, 1]$$
 Шансы — отношение количества успехов к количеству неудач:
 $$odds = \frac{p}{1-p} = \frac{p\mbox{(успеха)}}{p\mbox{(неудачи)}}, odds \in [0, +\infty]$$
 Натуральный логарифм шансов:
