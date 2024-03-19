@@ -619,6 +619,48 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 [1,]    0.803  0.397782    0     1</code></pre>
 </div>
 </div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Используйте датасет с языками и признакми из лекции для построения модели, которая предсказывает наличие ударение в зависимости от количество фонем.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Running /usr/lib/R/bin/R CMD SHLIB foo.c
+using C compiler: ‘gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0’
+gcc -I"/usr/share/R/include" -DNDEBUG   -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/Rcpp/include/"  -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/"  -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/unsupported"  -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/BH/include" -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/StanHeaders/include/src/"  -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/StanHeaders/include/"  -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppParallel/include/"  -I"/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/rstan/include" -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DUSE_STANC3 -DSTRICT_R_HEADERS  -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION  -D_HAS_AUTO_PTR_ETC=0  -include '/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/StanHeaders/include/stan/math/prim/fun/Eigen.hpp'  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1       -fpic  -g -O2 -ffile-prefix-map=/build/r-base-14Q6vq/r-base-4.3.3=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2  -c foo.c -o foo.o
+In file included from /home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:88,
+                 from /home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/StanHeaders/include/stan/math/prim/fun/Eigen.hpp:22,
+                 from &lt;command-line&gt;:
+/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:1: error: unknown type name ‘namespace’
+  628 | namespace Eigen {
+      | ^~~~~~~~~
+/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/src/Core/util/Macros.h:628:17: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+  628 | namespace Eigen {
+      |                 ^
+In file included from /home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Dense:1,
+                 from /home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/StanHeaders/include/stan/math/prim/fun/Eigen.hpp:22,
+                 from &lt;command-line&gt;:
+/home/agricolamz/R/x86_64-pc-linux-gnu-library/4.3/RcppEigen/include/Eigen/Core:96:10: fatal error: complex: No such file or directory
+   96 | #include &lt;complex&gt;
+      |          ^~~~~~~~~
+compilation terminated.
+make: *** [/usr/lib/R/etc/Makeconf:191: foo.o] Error 1</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12-introduction_to_logistic_files/figure-html/stress_by_phonemes-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

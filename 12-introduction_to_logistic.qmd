@@ -262,3 +262,27 @@ predict(logit_1, newdata = data.frame(consonants = 29))
 predict(logit_1, newdata = data.frame(consonants = 29))
 ```
 
+::: {.callout-note}
+Используйте датасет с языками и признакми из лекции для построения модели, которая предсказывает наличие ударение в зависимости от количество фонем.
+:::
+
+```{r stress_by_phonemes}
+#| cache: true
+#| echo: false
+
+phonological_profiles |>
+  mutate(stress = as.double(stress),
+         phoneme = consonants + vowels) |> 
+  brm(stress ~ phoneme, 
+      family = bernoulli(), 
+      cores = n_cores, 
+      refresh = 0, 
+      silent = TRUE,
+      data = _) ->
+  fit
+
+conditional_effects(fit,
+                    prob = 0.8,
+                    effects = c("phoneme"))
+```
+

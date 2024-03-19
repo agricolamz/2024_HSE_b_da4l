@@ -11,3 +11,4 @@ lubridate
 checkdown
 Rcpp
 brms
+tidybayes
