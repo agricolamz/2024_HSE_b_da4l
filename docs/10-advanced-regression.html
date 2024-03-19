@@ -298,7 +298,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#логарифмирование" id="toc-логарифмирование" class="nav-link" data-scroll-target="#логарифмирование"><span class="header-section-number">10.5.1</span> Логарифмирование</a></li>
   </ul></li>
-  <li><a href="#нормальность-распределение-остатков" id="toc-нормальность-распределение-остатков" class="nav-link" data-scroll-target="#нормальность-распределение-остатков"><span class="header-section-number">10.6</span> Нормальность распределение остатков</a></li>
+  <li><a href="#нормальность-распределение-остатков" id="toc-нормальность-распределение-остатков" class="nav-link" data-scroll-target="#нормальность-распределение-остатков"><span class="header-section-number">10.6</span> Нормальность распределение остатков</a>
+  <ul class="collapse">
+  <li><a href="#quantile-quantile-plots-aka-q-q-plot" id="toc-quantile-quantile-plots-aka-q-q-plot" class="nav-link" data-scroll-target="#quantile-quantile-plots-aka-q-q-plot"><span class="header-section-number">10.6.1</span> Quantile-Quantile Plots (aka Q-Q plot)</a></li>
+  </ul></li>
   <li><a href="#гетероскидастичность" id="toc-гетероскидастичность" class="nav-link" data-scroll-target="#гетероскидастичность"><span class="header-section-number">10.7</span> Гетероскидастичность</a></li>
   <li><a href="#мультиколлинеарность" id="toc-мультиколлинеарность" class="nav-link" data-scroll-target="#мультиколлинеарность"><span class="header-section-number">10.8</span> Мультиколлинеарность</a></li>
   <li><a href="#независимость-наблюдений" id="toc-независимость-наблюдений" class="nav-link" data-scroll-target="#независимость-наблюдений"><span class="header-section-number">10.9</span> Независимость наблюдений</a>
@@ -1177,7 +1180,9 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 <section id="нормальность-распределение-остатков" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="нормальность-распределение-остатков"><span class="header-section-number">10.6</span> Нормальность распределение остатков</h2>
 <p>Линейная регрессия предполагает нормальность распределения остатков. Когда связь не линейна, то остатки тоже будут распределены не нормально.</p>
-<p>Можно смотреть на первый график используя функцию <code>plot(m1)</code> — график остатков. Интерпретаций этого графика достаточно много (см. <a href="http://docs.statwing.com/interpreting-residual-plots-to-improve-your-regression/">статью про это</a>).</p>
+<p>Можно смотреть на первый график используя функцию <code>plot(m1)</code> — график остатков. Интерпретаций этого графика достаточно много (см. <a href="https://www.qualtrics.com/support/stats-iq/analyses/regression-guides/interpreting-residual-plots-improve-regression/">статью про это</a>).</p>
+<section id="quantile-quantile-plots-aka-q-q-plot" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="quantile-quantile-plots-aka-q-q-plot"><span class="header-section-number">10.6.1</span> Quantile-Quantile Plots (aka Q-Q plot)</h3>
 <p>Можно смотреть на qqplot:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">res =</span> m1<span class="sc">$</span>residuals) <span class="sc">|&gt;</span> </span>
@@ -1195,8 +1200,10 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(m1<span class="sc">$</span>residuals)</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(m1<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">residuals =</span> m1<span class="sc">$</span>residuals) <span class="sc">|&gt;</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> residuals))<span class="sc">+</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>()<span class="sc">+</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1215,8 +1222,10 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(m2<span class="sc">$</span>residuals)</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(m2<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">residuals =</span> m2<span class="sc">$</span>residuals) <span class="sc">|&gt;</span> </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> residuals))<span class="sc">+</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>()<span class="sc">+</span></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1235,8 +1244,10 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(m3<span class="sc">$</span>residuals)</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(m3<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">residuals =</span> m3<span class="sc">$</span>residuals) <span class="sc">|&gt;</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> residuals))<span class="sc">+</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>()<span class="sc">+</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1245,19 +1256,225 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 </div>
 </div>
 </div>
+<p>Идея q-q plot заключается в визуальном анализе множества точек каждая из которых соотносится с квантилями анализируемого распределения и квантилями теоретического распределения. В анализируемом нами векторе <code>m1$residuals</code> 100 наблюдений.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>quantiles <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">102</span>)[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">102</span>)]</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>quantiles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 0.00990099 0.01980198 0.02970297 0.03960396 0.04950495 0.05940594
+  [7] 0.06930693 0.07920792 0.08910891 0.09900990 0.10891089 0.11881188
+ [13] 0.12871287 0.13861386 0.14851485 0.15841584 0.16831683 0.17821782
+ [19] 0.18811881 0.19801980 0.20792079 0.21782178 0.22772277 0.23762376
+ [25] 0.24752475 0.25742574 0.26732673 0.27722772 0.28712871 0.29702970
+ [31] 0.30693069 0.31683168 0.32673267 0.33663366 0.34653465 0.35643564
+ [37] 0.36633663 0.37623762 0.38613861 0.39603960 0.40594059 0.41584158
+ [43] 0.42574257 0.43564356 0.44554455 0.45544554 0.46534653 0.47524752
+ [49] 0.48514851 0.49504950 0.50495050 0.51485149 0.52475248 0.53465347
+ [55] 0.54455446 0.55445545 0.56435644 0.57425743 0.58415842 0.59405941
+ [61] 0.60396040 0.61386139 0.62376238 0.63366337 0.64356436 0.65346535
+ [67] 0.66336634 0.67326733 0.68316832 0.69306931 0.70297030 0.71287129
+ [73] 0.72277228 0.73267327 0.74257426 0.75247525 0.76237624 0.77227723
+ [79] 0.78217822 0.79207921 0.80198020 0.81188119 0.82178218 0.83168317
+ [85] 0.84158416 0.85148515 0.86138614 0.87128713 0.88118812 0.89108911
+ [91] 0.90099010 0.91089109 0.92079208 0.93069307 0.94059406 0.95049505
+ [97] 0.96039604 0.97029703 0.98019802 0.99009901</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>))</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]        -Inf -2.33007892 -2.05785598 -1.88517703 -1.75530050 -1.64967268
+  [7] -1.55977999 -1.48097265 -1.41041953 -1.34626267 -1.28721373 -1.23234086
+ [13] -1.18094704 -1.13249653 -1.08656811 -1.04282424 -1.00098992 -0.96083793
+ [19] -0.92217818 -0.88484984 -0.84871553 -0.81365681 -0.77957077 -0.74636734
+ [25] -0.71396710 -0.68229963 -0.65130211 -0.62091817 -0.59109698 -0.56179247
+ [31] -0.53296269 -0.50456929 -0.47657700 -0.44895330 -0.42166805 -0.39469322
+ [37] -0.36800261 -0.34157166 -0.31537724 -0.28939747 -0.26361161 -0.23799988
+ [43] -0.21254334 -0.18722382 -0.16202378 -0.13692623 -0.11191464 -0.08697288
+ [49] -0.06208512 -0.03723576 -0.01240937  0.01240937  0.03723576  0.06208512
+ [55]  0.08697288  0.11191464  0.13692623  0.16202378  0.18722382  0.21254334
+ [61]  0.23799988  0.26361161  0.28939747  0.31537724  0.34157166  0.36800261
+ [67]  0.39469322  0.42166805  0.44895330  0.47657700  0.50456929  0.53296269
+ [73]  0.56179247  0.59109698  0.62091817  0.65130211  0.68229963  0.71396710
+ [79]  0.74636734  0.77957077  0.81365681  0.84871553  0.88484984  0.92217818
+ [85]  0.96083793  1.00098992  1.04282424  1.08656811  1.13249653  1.18094704
+ [91]  1.23234086  1.28721373  1.34626267  1.41041953  1.48097265  1.55977999
+ [97]  1.64967268  1.75530050  1.88517703  2.05785598  2.33007892         Inf</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>)]</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sort</span>(m1<span class="sc">$</span>residuals)</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Линию, показывающая “теоретические ожидания”, обычно проводят через первый и третью квартили, т. е. через точки со следующими координатами:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)), </span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># я ленивый и вместо того чтобы выводить формулу прямой, я опять запускаю регрессию</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>line_coefficients <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)),</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))))</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(line_coefficients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)           x 
+  -1.760719  126.943082 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)), </span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)))<span class="sc">+</span></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">1</span>],</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">2</span>],</span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-48-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Давайте поиграем с разными распределениями:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">sort</span>()</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">length</span>(y)<span class="sc">+</span><span class="dv">2</span>))</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>)]</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>line_coefficients <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)),</span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))))</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb84-10"><a href="#cb84-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb84-11"><a href="#cb84-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">1</span>],</span>
+<span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">2</span>],</span>
+<span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">100</span>, <span class="at">df =</span> <span class="dv">20</span>) <span class="sc">|&gt;</span> <span class="fu">sort</span>()</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">length</span>(y)<span class="sc">+</span><span class="dv">2</span>))</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>)]</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>line_coefficients <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)),</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))))</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">1</span>],</span>
+<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">2</span>],</span>
+<span id="cb85-13"><a href="#cb85-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-49-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rlnorm</span>(<span class="dv">100</span>, <span class="at">meanlog =</span> <span class="dv">1</span>, <span class="at">sdlog =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">sort</span>()</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">length</span>(y)<span class="sc">+</span><span class="dv">2</span>))</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>)]</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>line_coefficients <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)),</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))))</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">1</span>],</span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">2</span>],</span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-49-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="fu">sort</span>()</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">length</span>(y)<span class="sc">+</span><span class="dv">2</span>))</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>)]</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>line_coefficients <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)),</span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))))</span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">1</span>],</span>
+<span id="cb87-12"><a href="#cb87-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">2</span>],</span>
+<span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-49-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Более того, ожидаемые квантили теоретического распределения могут быть отличны от нормального:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> <span class="fu">sort</span>()</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">qexp</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="fu">length</span>(y)<span class="sc">+</span><span class="dv">2</span>), <span class="at">rate =</span> <span class="dv">3</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">length</span>(m1<span class="sc">$</span>residuals)<span class="sc">+</span><span class="dv">2</span>)]</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>line_coefficients <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)),</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">y =</span> <span class="fu">quantile</span>(y, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))))</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y) <span class="sc">|&gt;</span> </span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y))<span class="sc">+</span></span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">1</span>],</span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">slope =</span> <span class="fu">coef</span>(line_coefficients)[<span class="dv">2</span>],</span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="гетероскидастичность" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="гетероскидастичность"><span class="header-section-number">10.7</span> Гетероскидастичность</h2>
 <p>Распределение остатков непостоянно (т.е. не гомоскидастичны):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>ldt <span class="sc">|&gt;</span> </span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Mean_RT, Freq))<span class="sc">+</span></span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>ldt <span class="sc">|&gt;</span> </span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Mean_RT, Freq))<span class="sc">+</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1284,20 +1501,20 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 <h3 data-number="10.9.1" class="anchored" data-anchor-id="линейная-модель-со-смешанными-эффектами"><span class="header-section-number">10.9.1</span> Линейная модель со смешанными эффектами</h3>
 <p>В качестве примера мы попробуем поиграть с <a href="https://en.wikipedia.org/wiki/Heaps%27_law">законом Хердана-Хипса</a>, описывающий взаимосвязь количества уникальных слов в тексте в зависимости от длины текста. В датасете собраны некоторые корпуса Universal Dependencies <span class="citation" data-cites="ud20">(<a href="#ref-ud20" role="doc-biblioref">Zeman et al. 2020</a>)</span> и некоторые числа, посчитанные на их основании:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/ud_corpora.csv"</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
-<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
-<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
-<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
-<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>ud <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/agricolamz/2021_da4l/master/data/ud_corpora.csv"</span>)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1311,11 +1528,11 @@ F-statistic: 51.11 on 1 and 98 DF,  p-value: 1.576e-10</code></pre>
 <p>В результате моделирования появляется обобщенная модель, которая игнорирует группировку, а потом для каждого значения случайного эффекта генерируется своя регрессия, отсчитывая от обобщенной модели как от базового уровня.</p>
 <p>Рассмотрим простейший случай:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(n_tokens<span class="sc">~</span>n_words<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>corpus), <span class="at">data =</span> ud)</span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(n_tokens<span class="sc">~</span>n_words<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>corpus), <span class="at">data =</span> ud)</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
 lmerModLmerTest]
@@ -1345,32 +1562,32 @@ Correlation of Fixed Effects:
         (Intr)
 n_words -0.079</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(fit1)) <span class="sc">|&gt;</span> </span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predicted), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(fit1)) <span class="sc">|&gt;</span> </span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predicted), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Можно посмотреть на предсказания модели (основные эффекты):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(fit1) <span class="sc">|&gt;</span> </span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(fit1) <span class="sc">|&gt;</span> </span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1386,19 +1603,19 @@ n_words -0.079</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>В данном случае мы предполагаем, что случайный эффект имеет случайный свободный член. Т.е. все получающиеся линии параллельны, так как имеют общий угловой коэффициент. Можно допустить большую свободу и сделать так, чтобы в случайном эффекте были не только интерсепт, но и свободный член:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(n_tokens<span class="sc">~</span>n_words<span class="sc">+</span>(<span class="dv">1</span><span class="sc">+</span>n_words<span class="sc">|</span>corpus), <span class="at">data =</span> ud)</span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(n_tokens<span class="sc">~</span>n_words<span class="sc">+</span>(<span class="dv">1</span><span class="sc">+</span>n_words<span class="sc">|</span>corpus), <span class="at">data =</span> ud)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
 lmerModLmerTest]
@@ -1431,50 +1648,50 @@ n_words -0.988
 optimizer (nloptwrap) convergence code: 0 (OK)
 boundary (singular) fit: see help('isSingular')</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(fit2)) <span class="sc">|&gt;</span> </span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predicted), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
-<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
-<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(fit2)) <span class="sc">|&gt;</span> </span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predicted), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
+<span id="cb98-9"><a href="#cb98-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Можно посмотреть на предсказания модели (основные эффекты):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(fit2) <span class="sc">|&gt;</span> </span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(fit2) <span class="sc">|&gt;</span> </span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Нарушения все те же:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>При желании мы можем также построить модель, в которой в случайном эффекте будет лишь угловой коэффициент, а свободный член будет фиксированным:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(n_tokens<span class="sc">~</span>n_words<span class="sc">+</span>(<span class="dv">0</span><span class="sc">+</span>n_words<span class="sc">|</span>corpus), <span class="at">data =</span> ud)</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(n_tokens<span class="sc">~</span>n_words<span class="sc">+</span>(<span class="dv">0</span><span class="sc">+</span>n_words<span class="sc">|</span>corpus), <span class="at">data =</span> ud)</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear mixed model fit by REML. t-tests use Satterthwaite's method [
 lmerModLmerTest]
@@ -1504,19 +1721,19 @@ Correlation of Fixed Effects:
         (Intr)
 n_words -0.132</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(fit3)) <span class="sc">|&gt;</span> </span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
-<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predicted), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
-<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
-<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>ud <span class="sc">|&gt;</span> </span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted =</span> <span class="fu">predict</span>(fit3)) <span class="sc">|&gt;</span> </span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n_words, n_tokens))<span class="sc">+</span></span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>corpus, <span class="at">scale =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> predicted), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"количество слов"</span>, </span>
+<span id="cb103-8"><a href="#cb103-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"количество уникальных слов"</span>,</span>
+<span id="cb103-9"><a href="#cb103-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"данные корпусов Universal Dependencies"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1525,30 +1742,30 @@ n_words -0.132</code></pre>
 <p><img src="images/lmer.gif" class="img-fluid"></p>
 <p>Можно посмотреть на предсказания модели (основные эффекты):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(fit3) <span class="sc">|&gt;</span> </span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggeffect</span>(fit3) <span class="sc">|&gt;</span> </span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Нарушения все те же:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="10-advanced-regression_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Сравним полученные модели:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit3, fit2, fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit3, fit2, fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">

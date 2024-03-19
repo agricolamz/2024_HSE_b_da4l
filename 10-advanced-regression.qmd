@@ -744,7 +744,9 @@ check_question(answer = c("a", "adv", "s", "s.PROP", "v"), options = sort(unique
 
 Линейная регрессия предполагает нормальность распределения остатков. Когда связь не линейна, то остатки тоже будут распределены не нормально.
 
-Можно смотреть на первый график используя функцию `plot(m1)` --- график остатков. Интерпретаций этого графика достаточно много (см. [статью про это](http://docs.statwing.com/interpreting-residual-plots-to-improve-your-regression/)).
+Можно смотреть на первый график используя функцию `plot(m1)` --- график остатков. Интерпретаций этого графика достаточно много (см. [статью про это](https://www.qualtrics.com/support/stats-iq/analyses/regression-guides/interpreting-residual-plots-improve-regression/)).
+
+### Quantile-Quantile Plots (aka Q-Q plot)
 
 Можно смотреть на qqplot:
 
@@ -756,22 +758,152 @@ tibble(res = m1$residuals) |>
   geom_histogram(aes(y = ..density..))+
   stat_function(fun = dnorm, args = list(mean = 0, sd = sd(m1$residuals)), color = "red")
 
-qqnorm(m1$residuals)
-qqline(m1$residuals)
+tibble(residuals = m1$residuals) |> 
+  ggplot(aes(sample = residuals))+
+  stat_qq()+
+  stat_qq_line()
 
 tibble(res = m2$residuals) |> 
   ggplot(aes(res))+
   geom_histogram(aes(y = ..density..))+
   stat_function(fun = dnorm, args = list(mean = 0, sd = sd(m2$residuals)), color = "red")
-qqnorm(m2$residuals)
-qqline(m2$residuals)
+
+tibble(residuals = m2$residuals) |> 
+  ggplot(aes(sample = residuals))+
+  stat_qq()+
+  stat_qq_line()
+
 
 tibble(res = m3$residuals) |> 
   ggplot(aes(res))+
   geom_histogram(aes(y = ..density..))+
   stat_function(fun = dnorm, args = list(mean = 0, sd = sd(m3$residuals)), color = "red")
-qqnorm(m3$residuals)
-qqline(m3$residuals)
+
+tibble(residuals = m3$residuals) |> 
+  ggplot(aes(sample = residuals))+
+  stat_qq()+
+  stat_qq_line()
+```
+
+Идея q-q plot заключается в визуальном анализе множества точек каждая из которых соотносится с квантилями анализируемого распределения и квантилями теоретического распределения. В анализируемом нами векторе `m1$residuals` `r length(m1$residuals)` наблюдений.
+
+```{r}
+quantiles <- seq(0, 1, length.out = 102)[-c(1, 102)]
+quantiles
+
+x <- qnorm(seq(0, 1, length.out = length(m1$residuals)+2))
+x
+x <- x[-c(1, length(m1$residuals)+2)]
+y <- sort(m1$residuals)
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()
+```
+
+Линию, показывающая "теоретические ожидания", обычно проводят через первый и третью квартили, т. е. через точки со следующими координатами:
+
+```{r}
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  annotate(geom = "point", color = "red", size = 3,
+           x = quantile(x, c(0.25, 0.75)), 
+           y = quantile(y, c(0.25, 0.75)))
+
+# я ленивый и вместо того чтобы выводить формулу прямой, я опять запускаю регрессию
+line_coefficients <- lm(y~x, data = tibble(x = quantile(x, c(0.25, 0.75)),
+                                           y = quantile(y, c(0.25, 0.75))))
+
+coef(line_coefficients)
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  annotate(geom = "point", color = "red", size = 3,
+           x = quantile(x, c(0.25, 0.75)), 
+           y = quantile(y, c(0.25, 0.75)))+
+  geom_abline(intercept = coef(line_coefficients)[1],
+              slope = coef(line_coefficients)[2],
+              linetype = 2, color = "red")
+```
+
+Давайте поиграем с разными распределениями:
+
+```{r}
+y <- rnorm(100, mean = 50, sd = 100) |> sort()
+x <- qnorm(seq(0, 1, length.out = length(y)+2))
+x <- x[-c(1, length(m1$residuals)+2)]
+
+line_coefficients <- lm(y~x, data = tibble(x = quantile(x, c(0.25, 0.75)),
+                                           y = quantile(y, c(0.25, 0.75))))
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  geom_abline(intercept = coef(line_coefficients)[1],
+              slope = coef(line_coefficients)[2],
+              linetype = 2, color = "red")
+
+y <- rt(100, df = 20) |> sort()
+x <- qnorm(seq(0, 1, length.out = length(y)+2))
+x <- x[-c(1, length(m1$residuals)+2)]
+
+line_coefficients <- lm(y~x, data = tibble(x = quantile(x, c(0.25, 0.75)),
+                                           y = quantile(y, c(0.25, 0.75))))
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  geom_abline(intercept = coef(line_coefficients)[1],
+              slope = coef(line_coefficients)[2],
+              linetype = 2, color = "red")
+
+y <- rlnorm(100, meanlog = 1, sdlog = 1) |> sort()
+x <- qnorm(seq(0, 1, length.out = length(y)+2))
+x <- x[-c(1, length(m1$residuals)+2)]
+
+line_coefficients <- lm(y~x, data = tibble(x = quantile(x, c(0.25, 0.75)),
+                                           y = quantile(y, c(0.25, 0.75))))
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  geom_abline(intercept = coef(line_coefficients)[1],
+              slope = coef(line_coefficients)[2],
+              linetype = 2, color = "red")
+
+y <- rexp(100, rate = 3) |> sort()
+x <- qnorm(seq(0, 1, length.out = length(y)+2))
+x <- x[-c(1, length(m1$residuals)+2)]
+
+line_coefficients <- lm(y~x, data = tibble(x = quantile(x, c(0.25, 0.75)),
+                                           y = quantile(y, c(0.25, 0.75))))
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  geom_abline(intercept = coef(line_coefficients)[1],
+              slope = coef(line_coefficients)[2],
+              linetype = 2, color = "red")
+```
+
+Более того, ожидаемые квантили теоретического распределения могут быть отличны от нормального:
+
+```{r}
+y <- rexp(100, rate = 3) |> sort()
+x <- qexp(seq(0, 1, length.out = length(y)+2), rate = 3)
+x <- x[-c(1, length(m1$residuals)+2)]
+
+line_coefficients <- lm(y~x, data = tibble(x = quantile(x, c(0.25, 0.75)),
+                                           y = quantile(y, c(0.25, 0.75))))
+
+tibble(x, y) |> 
+  ggplot(aes(x, y))+
+  geom_point()+
+  geom_abline(intercept = coef(line_coefficients)[1],
+              slope = coef(line_coefficients)[2],
+              linetype = 2, color = "red")
 ```
 
 ## Гетероскидастичность
